@@ -1,3 +1,4 @@
-public class Piste {
+public class Piste<Position> {
 
+    Position PositionPiste;
 }

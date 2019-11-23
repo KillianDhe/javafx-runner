@@ -1,2 +1,4 @@
-public class Obstacle {
+public abstract class Obstacle {
+
+    private Position positionObstacle;
 }

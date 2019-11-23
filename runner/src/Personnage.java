@@ -1,4 +1,4 @@
-public class Personnage {
+public abstract class Personnage {
 
     int Taille;
     boolean EnSaut;
