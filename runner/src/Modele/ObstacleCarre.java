@@ -8,12 +8,26 @@ public class ObstacleCarre extends Obstacle {
     private int cote;
     private Color couleur;
 
-    public Rectangle creerObstacleCarre(){
-        Rectangle obstacle = new Rectangle();
-        obstacle.setX(50);
-        obstacle.setY(50);
-        obstacle.setHeight(this.cote);
-        obstacle.setWidth(this.cote);
-        return obstacle;
+    public ObstacleCarre(int cote, Color couleur){
+        this.setCote(cote);
+        this.setCouleur(couleur);
+
     }
+
+    public int getCote() {
+        return cote;
+    }
+
+    public void setCote(int cote) {
+        this.cote = cote;
+    }
+
+    public Color getCouleur() {
+        return couleur;
+    }
+
+    public void setCouleur(Color couleur) {
+        this.couleur = couleur;
+    }
+
 }
