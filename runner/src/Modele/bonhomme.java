@@ -3,5 +3,17 @@ package Modele;
 import javafx.scene.paint.Color;
 
 public class bonhomme {
-    Color couleur;
+    private Color couleur;
+
+    public bonhomme(Color couleur) {
+        this.couleur = couleur;
+    }
+
+    public Color getCouleur() {
+        return couleur;
+    }
+
+    public void setCouleur(Color couleur) {
+        this.couleur = couleur;
+    }
 }

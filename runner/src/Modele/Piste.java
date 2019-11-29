@@ -1,6 +1,6 @@
 package Modele;
 
-public class Piste<Position> {
+public class Piste {
 
     Position PositionPiste;
 }

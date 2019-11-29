@@ -30,4 +30,8 @@ public class ObstacleCarre extends Obstacle {
         this.couleur = couleur;
     }
 
+    public int getLargeur(){
+        return cote;
+    }
+
 }

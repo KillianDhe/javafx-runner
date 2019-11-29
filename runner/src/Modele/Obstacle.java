@@ -1,6 +1,9 @@
 package Modele;
 
-public abstract class Obstacle {
+public abstract class Obstacle{
 
-    private Position positionObstacle;
+    private int Largeur;
+    private int hauteurmax
+    private Color couleur;
+
 }
