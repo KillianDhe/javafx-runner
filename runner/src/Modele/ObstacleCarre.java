@@ -6,9 +6,9 @@ import javafx.scene.shape.Rectangle;
 public class ObstacleCarre extends Obstacle {
 
     private int cote;
-    private Color couleur;
 
-    public ObstacleCarre(int cote, Color couleur){
+    public ObstacleCarre(int cote, Color couleur,int largeur, int  ){
+        super()
         this.setCote(cote);
         this.setCouleur(couleur);
 
