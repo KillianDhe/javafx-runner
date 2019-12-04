@@ -2,13 +2,14 @@ package Modele;
 
 public abstract class Personnage {
 
-   private int Taille;
+    private int Taille;
     private boolean enSaut;
     private boolean enBas;
     private int longueurSaut;
+    private int hauteurSaut;
 
     public Personnage(int taille, boolean enSaut, boolean enBas, int longueurSaut) {
-        Taille = taille;
+        this.Taille = taille;
         this.enSaut = enSaut;
         this.enBas = enBas;
         this.longueurSaut = longueurSaut;
@@ -44,5 +45,13 @@ public abstract class Personnage {
 
     public void setLongueurSaut(int longueurSaut) {
         this.longueurSaut = longueurSaut;
+    }
+
+    public int getHauteurSaut() {
+        return hauteurSaut;
+    }
+
+    public void setHauteurSaut(int hauteurSaut) {
+        this.hauteurSaut = hauteurSaut;
     }
 }

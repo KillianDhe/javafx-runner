@@ -1,9 +1,9 @@
 package Modele;
 
 public class Piste {
+    private int hauteur;
 
-    Position PositionPiste;
-
-
-
+    public Piste(int hauteur) {
+        this.hauteur=hauteur;
+    }
 }
