@@ -1,7 +1,7 @@
 package Modele;
 
 import javafx.scene.paint.Color;
-
+/*
 public class ObstacleRond extends Obstacle{
 
     private int diametre;
@@ -21,8 +21,9 @@ public class ObstacleRond extends Obstacle{
     }
 
 
-        public int getLargeur(){
+    public int getLargeur(){
             return diametre;
         }
 
 }
+*/

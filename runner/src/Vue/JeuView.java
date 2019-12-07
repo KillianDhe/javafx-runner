@@ -1,8 +1,27 @@
-package Modele;
+package Vue;
 
-public abstract class EnJeu {
+import Modele.Piste;
+import javafx.scene.Group;
+import javafx.scene.Scene;
+import javafx.scene.layout.Pane;
 
-    /*private Pane laPiste = new Pane();
+public class JeuView {
+    private Pane gamePane = new Pane();
+    private Scene laScene;
+    private PisteView PisteView = new PisteView(new Piste(500));
+
+
+    public Scene getGamePane() {
+        Group root = new Group();
+        root.getChildren().add(PisteView);
+        this.laScene = new Scene(root);
+        return laScene;
+    }
+
+
+}
+
+    /*
     private int hauteurPiste;
     private Line leSol = new Line(0,hauteurPiste,1100,hauteurPiste);
 
@@ -51,5 +70,5 @@ public abstract class EnJeu {
 
 */
 
-}
+
 
