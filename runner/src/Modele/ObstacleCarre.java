@@ -7,11 +7,11 @@ public class ObstacleCarre extends Obstacle {
 
     private int cote;
 
-    public ObstacleCarre(int cote, Color couleur,int largeur, int  ){
-        super()
+    public ObstacleCarre(int cote,Color couleur){
+        super.setCouleur(couleur);
+        super.setLargeur(cote);
+        super.setHauteur(cote);
         this.setCote(cote);
-        this.setCouleur(couleur);
-
     }
 
     public int getCote() {
@@ -22,16 +22,6 @@ public class ObstacleCarre extends Obstacle {
         this.cote = cote;
     }
 
-    public Color getCouleur() {
-        return couleur;
-    }
 
-    public void setCouleur(Color couleur) {
-        this.couleur = couleur;
-    }
-
-    public int getLargeur(){
-        return cote;
-    }
 
 }

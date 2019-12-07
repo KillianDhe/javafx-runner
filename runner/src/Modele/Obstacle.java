@@ -1,31 +1,23 @@
 package Modele;
 
+import javafx.scene.paint.Color;
+
 public abstract class Obstacle{
 
+    private int hauteur;
     private int Largeur;
-    private int hauteurmax;
     private Color couleur;
-
-    public Obstacle(int largeur, Color couleur) {
-        Largeur = largeur;
-        this.couleur = couleur;
-    }
 
     public int getLargeur() {
         return Largeur;
     }
 
     public void setLargeur(int largeur) {
-        Largeur = largeur;
+        if (hauteur>constantes.getLongueurObstacle())
+            this.Largeur=constantes.getLongueurObstacle();
+        else Largeur = largeur;
     }
 
-    public int getHauteurmax() {
-        return hauteurmax;
-    }
-
-    public void setHauteurmax(int hauteurmax) {
-        this.hauteurmax = hauteurmax;
-    }
 
     public Color getCouleur() {
         return couleur;
@@ -34,4 +26,17 @@ public abstract class Obstacle{
     public void setCouleur(Color couleur) {
         this.couleur = couleur;
     }
+
+    public int getHauteur() {
+        return hauteur;
+    }
+
+    public void setHauteur(int hauteur) {
+        if (hauteur>constantes.getHauteurObstacle())
+            this.hauteur=constantes.getLongueurGroupeObstacle();
+        else this.hauteur = hauteur;
+    }
+
+
+
 }

@@ -2,25 +2,25 @@ package Modele;
 
 public abstract class Personnage {
 
-    private int Taille;
+    private int taille;
     private boolean enSaut;
     private boolean enBas;
     private int longueurSaut;
     private int hauteurSaut;
 
-    public Personnage(int taille, boolean enSaut, boolean enBas, int longueurSaut) {
-        this.Taille = taille;
-        this.enSaut = enSaut;
-        this.enBas = enBas;
-        this.longueurSaut = longueurSaut;
+    public Personnage(int taille, boolean enSaut, boolean enBas, int longueurSaut, int hauteurSaut) {
+        this.setTaille(taille);
+        this.setEnSaut(enSaut);
+        this.setEnBas(enBas);
+        this.setLongueurSaut(longueurSaut);
+        this.setHauteurSaut(hauteurSaut);
     }
-
     public int getTaille() {
-        return Taille;
+        return taille;
     }
 
     public void setTaille(int taille) {
-        Taille = taille;
+        taille = taille;
     }
 
     public boolean isEnSaut() {
@@ -54,4 +54,6 @@ public abstract class Personnage {
     public void setHauteurSaut(int hauteurSaut) {
         this.hauteurSaut = hauteurSaut;
     }
+
+
 }

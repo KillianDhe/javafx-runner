@@ -2,7 +2,7 @@ package Modele;
 
 public abstract class EnJeu {
 
-    private Pane laPiste = new Pane();
+    /*private Pane laPiste = new Pane();
     private int hauteurPiste;
     private Line leSol = new Line(0,hauteurPiste,1100,hauteurPiste);
 
@@ -49,7 +49,7 @@ public abstract class EnJeu {
     }
 
 
-
+*/
 
 }
 
