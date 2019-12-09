@@ -1,18 +1,42 @@
 package Modele;
 
+import javafx.beans.InvalidationListener;
+import javafx.collections.ListChangeListener;
+import javafx.collections.ObservableList;
+import javafx.scene.control.ListView;
+import java.util.List;
+import java.util.ArrayList;
+
+
+
 public class GroupeObstacle {
 
     private int positionx;
     private int positiony;
     private int largeur;
-    private int largeurMax;
+    private  List<Obstacle> listeObstacle;
 
 
-    public GroupeObstacle(int positionx, int positiony, int largeur, int largeurMax) {
+    public GroupeObstacle(int positionx, int positiony) {
         this.setPositionx(positionx);
         this.setPositiony(positiony);
-        this.setLargeur(largeur);
-        this.setLargeurMax(largeurMax);
+        this.largeur=0;
+        listeObstacle=new ArrayList<Obstacle>();
+    }
+
+    public void AjouterObstacle(Obstacle o)
+    {
+        if(this.getLargeur()+o.getLargeur()<constantes.getLongueurGroupeObstacle())
+        {
+            listeObstacle.add(o);
+            this.setLargeur(this.getLargeur()+o.getLargeur());
+        }
+
+    }
+
+    public void SupprimerObstacle(Obstacle o)
+    {
+        listeObstacle.remove(o);
     }
 
 
@@ -37,14 +61,26 @@ public class GroupeObstacle {
     }
 
     public void setLargeur(int largeur) {
-        this.largeur = largeur;
+        if (largeur>constantes.getLongueurGroupeObstacle())
+            this.largeur=constantes.getLongueurGroupeObstacle();
+        else this.largeur = largeur;
     }
 
-    public int getLargeurMax() {
-        return largeurMax;
+    public List<Obstacle> getListeObstacle() {
+        return listeObstacle;
     }
 
-    public void setLargeurMax(int largeurMax) {
-        this.largeurMax = largeurMax;
+    public void setListeObstacle(List<Obstacle> listeObstacle) {
+        this.listeObstacle = listeObstacle;
+    }
+
+    @Override
+    public String toString() {
+        return "GroupeObstacle{" +
+                "positionx=" + positionx +
+                ", positiony=" + positiony +
+                ", largeur=" + largeur +
+                ", listeObstacle=" + listeObstacle +
+                '}';
     }
 }

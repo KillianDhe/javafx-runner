@@ -135,7 +135,24 @@
 											"top": 278,
 											"width": 322.9814453125,
 											"height": 13,
-											"text": "-hauteur",
+											"text": "-positionx",
+											"horizontalAlignment": 0
+										},
+										{
+											"_type": "UMLAttributeView",
+											"_id": "AAAAAAFu5lwehLK0cRM=",
+											"_parent": {
+												"$ref": "AAAAAAFulSOhz0RW5co="
+											},
+											"model": {
+												"$ref": "AAAAAAFu5lweR7KxNf4="
+											},
+											"font": "Arial;13;0",
+											"left": 565,
+											"top": 293,
+											"width": 322.9814453125,
+											"height": 13,
+											"text": "+positiony",
 											"horizontalAlignment": 0
 										}
 									],
@@ -143,7 +160,7 @@
 									"left": 560,
 									"top": 273,
 									"width": 332.9814453125,
-									"height": 23
+									"height": 38
 								},
 								{
 									"_type": "UMLOperationCompartmentView",
@@ -166,7 +183,7 @@
 											},
 											"font": "Arial;13;0",
 											"left": 565,
-											"top": 301,
+											"top": 316,
 											"width": 322.9814453125,
 											"height": 13,
 											"text": "-AjouterGroupeObstacle(gobstacle: GroupeObstacle)",
@@ -183,7 +200,7 @@
 											},
 											"font": "Arial;13;0",
 											"left": 565,
-											"top": 316,
+											"top": 331,
 											"width": 322.9814453125,
 											"height": 13,
 											"text": "-supprimerGroupeObstacle(gobstacle: GroupeObstacle)",
@@ -200,7 +217,7 @@
 											},
 											"font": "Arial;13;0",
 											"left": 565,
-											"top": 331,
+											"top": 346,
 											"width": 322.9814453125,
 											"height": 13,
 											"text": "+GenerateurGroupeObstacle()",
@@ -209,7 +226,7 @@
 									],
 									"font": "Arial;13;0",
 									"left": 560,
-									"top": 296,
+									"top": 311,
 									"width": 332.9814453125,
 									"height": 53
 								},
@@ -418,30 +435,13 @@
 											"height": 13,
 											"text": "-largeur",
 											"horizontalAlignment": 0
-										},
-										{
-											"_type": "UMLAttributeView",
-											"_id": "AAAAAAFut8Z+HayBAQY=",
-											"_parent": {
-												"$ref": "AAAAAAFulSPUl0SB6LM="
-											},
-											"model": {
-												"$ref": "AAAAAAFut8Z956x+EjY="
-											},
-											"font": "Arial;13;0",
-											"left": 1085,
-											"top": 323,
-											"width": 167,
-											"height": 13,
-											"text": "-largeurMax",
-											"horizontalAlignment": 0
 										}
 									],
 									"font": "Arial;13;0",
 									"left": 1080,
 									"top": 273,
 									"width": 177,
-									"height": 68
+									"height": 53
 								},
 								{
 									"_type": "UMLOperationCompartmentView",
@@ -454,7 +454,7 @@
 									},
 									"font": "Arial;13;0",
 									"left": 1080,
-									"top": 341,
+									"top": 326,
 									"width": 177,
 									"height": 10
 								},
@@ -5340,9 +5340,16 @@
 							"_parent": {
 								"$ref": "AAAAAAFulSOhzURO0tU="
 							},
-							"name": "hauteur",
-							"visibility": "private",
-							"type": ""
+							"name": "positionx",
+							"visibility": "private"
+						},
+						{
+							"_type": "UMLAttribute",
+							"_id": "AAAAAAFu5lweR7KxNf4=",
+							"_parent": {
+								"$ref": "AAAAAAFulSOhzURO0tU="
+							},
+							"name": "positiony"
 						}
 					],
 					"operations": [
@@ -5482,16 +5489,6 @@
 								"$ref": "AAAAAAFulSPUl0R56M4="
 							},
 							"name": "largeur",
-							"visibility": "private",
-							"type": ""
-						},
-						{
-							"_type": "UMLAttribute",
-							"_id": "AAAAAAFut8Z956x+EjY=",
-							"_parent": {
-								"$ref": "AAAAAAFulSPUl0R56M4="
-							},
-							"name": "largeurMax",
 							"visibility": "private",
 							"type": ""
 						}
@@ -6187,7 +6184,8 @@
 								"$ref": "AAAAAAFut8ATHIUHBxg="
 							},
 							"name": "Largeur",
-							"visibility": "private"
+							"visibility": "private",
+							"type": ""
 						},
 						{
 							"_type": "UMLAttribute",
@@ -6196,7 +6194,8 @@
 								"$ref": "AAAAAAFut8ATHIUHBxg="
 							},
 							"name": "Hauteur",
-							"visibility": "private"
+							"visibility": "private",
+							"type": ""
 						}
 					]
 				},

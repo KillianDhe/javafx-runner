@@ -8,9 +8,7 @@ public class ObstacleCarre extends Obstacle {
     private int cote;
 
     public ObstacleCarre(int cote,Color couleur){
-        super.setCouleur(couleur);
-        super.setLargeur(cote);
-        super.setHauteur(cote);
+        super(cote,cote,couleur);
         this.setCote(cote);
     }
 
@@ -22,6 +20,9 @@ public class ObstacleCarre extends Obstacle {
         this.cote = cote;
     }
 
-
+    @Override
+    public String toString() {
+        return super.toString();
+    }
 
 }

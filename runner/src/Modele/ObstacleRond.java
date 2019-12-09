@@ -8,9 +8,7 @@ public class ObstacleRond extends Obstacle{
 
 
     public ObstacleRond(int diametre,int largeur, Color couleur) {
-        super.setCouleur(couleur);
-        super.setLargeur(diametre);
-        super.setHauteur(diametre);
+        super(diametre,diametre,couleur);
         this.setDiametre(diametre);
     }
 
@@ -27,4 +25,8 @@ public class ObstacleRond extends Obstacle{
             return diametre;
         }
 
+    @Override
+    public String toString() {
+        return super.toString();
+    }
 }
