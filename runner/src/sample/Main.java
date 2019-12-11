@@ -25,9 +25,9 @@ public class Main extends Application {
         primaryStage.setScene(leJeu.getGamePane());
         primaryStage.show();
 
-        Piste p1 = new Piste(10, 10);
+        /*Piste p1 = new Piste(10, 10);
         p1.ajouterGoupeObstacle(p1.genererGroupeObstacle());
-        System.out.println(p1.toString());
+        System.out.println(p1.toString());*/
     }
 
 

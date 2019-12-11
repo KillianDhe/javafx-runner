@@ -7,12 +7,10 @@ import java.util.List;
 
 public class Piste {
 
-    private int positionx;
     private int positiony;
     private List<GroupeObstacle> listeGroupeObstacle;
 
-    public Piste(int positionx, int positiony) {
-        this.positionx = positionx;
+    public Piste(int positiony) {
         this.positiony = positiony;
         listeGroupeObstacle=new ArrayList<GroupeObstacle>();
     }
@@ -45,14 +43,6 @@ public class Piste {
     }
 
 
-    public int getPositionx() {
-        return positionx;
-    }
-
-    public void setPositionx(int positionx) {
-        this.positionx = positionx;
-    }
-
     public int getPositiony() {
         return positiony;
     }
@@ -60,6 +50,8 @@ public class Piste {
     public void setPositiony(int positiony) {
         this.positiony = positiony;
     }
+
+
 
     public List<GroupeObstacle> getListeGroupeObstacle() {
         return listeGroupeObstacle;
@@ -72,17 +64,16 @@ public class Piste {
     @Override
     public String toString() {
         return "Piste{" +
-                "positionx=" + positionx +
-                ", positiony=" + positiony +
+                "positionx=" + positiony +
                 ", listeGroupeObstacle=" + listeGroupeObstacle +
                 '}';
     }
 
     public int getHauteur() {
-        return hauteur;
+        return positiony;
     }
 
     public void setHauteur(int hauteur) {
-        this.hauteur = hauteur;
+        this.positiony = hauteur;
     }
 }
