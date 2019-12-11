@@ -3,19 +3,19 @@ package Modele;
 public class constantes {
 
     public static int getHauteurSaut() {
-        return 8;
+        return 30;
     }
 
     public static int getLongueurSaut() {
-        return 7;
+        return 50;
     }
 
     public static int getHauteurObstacle() {
-        return 6;
+        return 25 ;
     }
 
     public static int getLongueurGroupeObstacle() {
-        return 5;
+        return 45;
     }
 
     public static int getLongueurObstacle() {
