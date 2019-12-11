@@ -7,14 +7,25 @@ public abstract class Personnage {
     private boolean enBas;
     private int longueurSaut;
     private int hauteurSaut;
+    private int positiony;
+    private int positionx;
 
-    public Personnage(int taille, boolean enSaut, boolean enBas, int longueurSaut, int hauteurSaut) {
-        this.setTaille(taille);
-        this.setEnSaut(enSaut);
-        this.setEnBas(enBas);
-        this.setLongueurSaut(longueurSaut);
-        this.setHauteurSaut(hauteurSaut);
+    public Personnage(int positiony,int positionx) {
+        this.setTaille(constantes.getTaillePersonnage());
+        this.setEnSaut(false);
+        this.setEnBas(false);
+        this.setLongueurSaut(constantes.getLongueurSaut());
+        this.setHauteurSaut(constantes.getHauteurSaut());
+        this.setPositionx(positionx);
+        this.setPositiony(positiony);
     }
+
+
+    public void sauter(){
+        this.setPositiony(this.getPositiony()+50);
+        this.setEnSaut(true);
+    }
+
     public int getTaille() {
         return taille;
     }
@@ -55,5 +66,32 @@ public abstract class Personnage {
         this.hauteurSaut = hauteurSaut;
     }
 
+    public int getPositiony() {
+        return positiony;
+    }
 
+    public void setPositiony(int positiony) {
+        this.positiony = positiony;
+    }
+
+    public int getPositionx() {
+        return positionx;
+    }
+
+    public void setPositionx(int positionx) {
+        this.positionx = positionx;
+    }
+
+    @Override
+    public String toString() {
+        return "Personnage{" +
+                "taille=" + taille +
+                ", enSaut=" + enSaut +
+                ", enBas=" + enBas +
+                ", longueurSaut=" + longueurSaut +
+                ", hauteurSaut=" + hauteurSaut +
+                ", positiony=" + positiony +
+                ", positionx=" + positionx +
+                '}';
+    }
 }

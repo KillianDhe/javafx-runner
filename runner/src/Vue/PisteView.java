@@ -11,8 +11,8 @@ public class PisteView extends Parent {
 
 
     public PisteView(Piste piste){
-        this.hauteurPiste = piste.getHauteur();
-        Line line = new Line(0,piste.getHauteur(),1100,piste.getHauteur());
+        this.hauteurPiste = piste.getPositiony();
+        Line line = new Line(0,piste.getPositiony(),1100,piste.getPositiony());
         this.getChildren().add(line);
     }
 

@@ -9,16 +9,23 @@ public class Piste {
 
     private int positiony;
     private List<GroupeObstacle> listeGroupeObstacle;
+    private Personnage personnage;
 
-    public Piste(int positiony) {
+    public Piste(int positiony, Personnage personnage) {
         this.positiony = positiony;
         listeGroupeObstacle=new ArrayList<GroupeObstacle>();
+        this.personnage=personnage;
     }
 
     public void ajouterGoupeObstacle(GroupeObstacle go)
     {
 
         listeGroupeObstacle.add(go);
+    }
+
+    public void GeneretEtAjoutergroupeObstacle()
+    {
+        ajouterGoupeObstacle(genererGroupeObstacle());
     }
 
     public void supprimerGroupeObstacle(GroupeObstacle go)
@@ -61,19 +68,20 @@ public class Piste {
         this.listeGroupeObstacle = listeGroupeObstacle;
     }
 
+    public Personnage getPersonnage() {
+        return personnage;
+    }
+
+    public void setPersonnage(Personnage personnage) {
+        this.personnage = personnage;
+    }
+
     @Override
     public String toString() {
         return "Piste{" +
-                "positionx=" + positiony +
+                "positiony=" + positiony +
                 ", listeGroupeObstacle=" + listeGroupeObstacle +
+                ", personnage=" + personnage +
                 '}';
-    }
-
-    public int getHauteur() {
-        return positiony;
-    }
-
-    public void setHauteur(int hauteur) {
-        this.positiony = hauteur;
     }
 }

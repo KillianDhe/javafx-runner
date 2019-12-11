@@ -18,6 +18,11 @@ public class constantes {
         return 45;
     }
 
+    public static int getTaillePersonnage(){
+        return 50;
+    }
+
+
     public static int getLongueurObstacle() {
         return getLongueurGroupeObstacle();
     }

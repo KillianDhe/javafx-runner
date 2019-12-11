@@ -1,14 +1,16 @@
 package Vue;
 
 import Modele.Piste;
+import Modele.bonhomme;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
+import javafx.scene.paint.Color;
 
 public class JeuView {
     private Pane gamePane = new Pane();
     private Scene laScene;
-    private PisteView PisteView = new PisteView(new Piste(500));
+    private PisteView PisteView = new PisteView(new Piste(500,new bonhomme(new Color(0.5,0.5,0.5,0.5),100,100)));
 
 
     public Scene getGamePane() {
