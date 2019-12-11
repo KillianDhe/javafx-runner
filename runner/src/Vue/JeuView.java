@@ -14,6 +14,7 @@ public class JeuView {
     public Scene getGamePane() {
         Group root = new Group();
         root.getChildren().add(PisteView);
+
         this.laScene = new Scene(root);
         return laScene;
     }
