@@ -1,14 +1,17 @@
-package Modele;
+package Vue;
 
+import Modele.constantes;
 import javafx.scene.paint.Color;
 
-public abstract class Obstacle{
+import java.util.List;
 
+public abstract class ObstacleView {
     private int hauteur;
     private int Largeur;
     private Color couleur;
 
-    public Obstacle(int hauteur, int largeur, Color couleur) {
+
+    public ObstacleView(int hauteur, int largeur, Color couleur) {
         this.setHauteur(hauteur);
         this.setLargeur(largeur);
         this.setCouleur(couleur);
@@ -19,7 +22,7 @@ public abstract class Obstacle{
     }
 
     public void setLargeur(int largeur) {
-        if (largeur>constantes.getLongueurObstacle())
+        if (largeur> constantes.getLongueurObstacle())
             this.Largeur=constantes.getLongueurObstacle();
         else Largeur = largeur;
     }
@@ -43,12 +46,4 @@ public abstract class Obstacle{
         else this.hauteur = hauteur;
     }
 
-    @Override
-    public String toString() {
-        return "Obstacle{" +
-                "hauteur=" + hauteur +
-                ", Largeur=" + Largeur +
-                ", couleur=" + couleur +
-                '}';
-    }
 }

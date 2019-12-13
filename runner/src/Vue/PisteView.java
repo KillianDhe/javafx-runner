@@ -1,32 +1,25 @@
 package Vue;
 
-import Modele.Piste;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.shape.Line;
+import javafx.scene.shape.Rectangle;
 
 public class PisteView extends Parent {
-    private int hauteurPiste;
-    private Line leSol = new Line(0,hauteurPiste,1100,hauteurPiste);
 
+    private int positiony;
+    private Line leSol;
 
-    public PisteView(Piste piste){
-        this.hauteurPiste = piste.getPositiony();
-        Line line = new Line(0,piste.getPositiony(),1100,piste.getPositiony());
-        this.getChildren().add(line);
+    PisteView(Integer posY) {
+        positiony=posY;
+        leSol= new Line(0,positiony,1100,positiony);
+        this.getChildren().add(leSol);
     }
 
-    public Line getlaPiste() {
+    public Line getLeSol() {
         return leSol;
     }
 
-    public void set(Line leSol) {
+    public void setLeSol(Line leSol) {
         this.leSol = leSol;
     }
-
-    @Override
-    public Node getStyleableNode() {
-        return null;
-    }
 }
-

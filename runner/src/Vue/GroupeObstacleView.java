@@ -1,28 +1,29 @@
-package Modele;
+package Vue;
+
+import Modele.constantes;
+import javafx.scene.Parent;
 
 import java.util.ArrayList;
 import java.util.List;
 
-
-
-public class GroupeObstacle {
+public class GroupeObstacleView extends Parent {
 
     private int positionx;
     private int positiony;
     private int largeur;
-    private  List<Obstacle> listeObstacle;
 
-
-    public GroupeObstacle(int positionx, int positiony) {
+    public GroupeObstacleView(int positionx, int positiony) {
         this.setPositionx(positionx);
         this.setPositiony(positiony);
         this.largeur=0;
-        listeObstacle=new ArrayList<Obstacle>();
+        ArrayList<ObstacleView> listeObstacle = new ArrayList<ObstacleView>();
     }
 
-    public void AjouterObstacle(Obstacle o)
+
+
+    public void AjouterObstacle(ObstacleView o)
     {
-        if(this.getLargeur()+o.getLargeur()<constantes.getLongueurGroupeObstacle())
+        if(this.getLargeur()+o.getLargeur()< constantes.getLongueurGroupeObstacle())
         {
             listeObstacle.add(o);
             this.setLargeur(this.getLargeur()+o.getLargeur());
@@ -70,13 +71,5 @@ public class GroupeObstacle {
         this.listeObstacle = listeObstacle;
     }
 
-    @Override
-    public String toString() {
-        return "GroupeObstacle{" +
-                "positionx=" + positionx +
-                ", positiony=" + positiony +
-                ", largeur=" + largeur +
-                ", listeObstacle=" + listeObstacle +
-                '}';
-    }
-}*/
+
+}

@@ -5,21 +5,23 @@ import javafx.scene.paint.Color;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Piste {
+public class Partie {
 
     private int positiony;
     private List<GroupeObstacle> listeGroupeObstacle;
     private Personnage personnage;
 
-    public Piste(int positiony, Personnage personnage) {
+    //, Personnage personnage
+    //this.personnage=personnage;
+
+
+    public Partie(int positiony) {
         this.positiony = positiony;
         listeGroupeObstacle=new ArrayList<GroupeObstacle>();
-        this.personnage=personnage;
     }
 
     public void ajouterGoupeObstacle(GroupeObstacle go)
     {
-
         listeGroupeObstacle.add(go);
     }
 
@@ -85,3 +87,4 @@ public class Piste {
                 '}';
     }
 }
+*/

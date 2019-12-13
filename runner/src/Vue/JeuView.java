@@ -1,27 +1,25 @@
 package Vue;
 
-import Modele.Piste;
-import Modele.bonhomme;
+import Modele.Partie;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
-import javafx.scene.paint.Color;
 
 public class JeuView {
     private Pane gamePane = new Pane();
+   // private ImageView mv = new ImageView(new Image("background.jpg"));
     private Scene laScene;
-    private PisteView PisteView = new PisteView(new Piste(500,new bonhomme(new Color(0.5,0.5,0.5,0.5),100,100)));
+    private Partie laPiste = new Partie(100);
 
 
     public Scene getGamePane() {
         Group root = new Group();
-        root.getChildren().add(PisteView);
-
+        //root.getChildren().add(mv);
+        PisteView pisteView = new PisteView(100);
+        root.getChildren().add(pisteView);
         this.laScene = new Scene(root);
         return laScene;
     }
-
-
 }
 
     /*
@@ -52,7 +50,6 @@ public class JeuView {
     public void AjouterObstacle(Obstacle obstacle){
         this.laPiste.getChildren().add(obstacle);
     }
-
 
 
     private int cote;
