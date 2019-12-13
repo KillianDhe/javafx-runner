@@ -1,5 +1,5 @@
 package Modele;
-
+import Vue.ObstacleView;
 import javafx.scene.paint.Color;
 
 import java.util.ArrayList;
@@ -8,7 +8,7 @@ import java.util.List;
 public class Partie {
 
     private int positiony;
-    private List<GroupeObstacle> listeGroupeObstacle;
+    private List<ObstacleView> listeObstacle;
     private Personnage personnage;
 
     //, Personnage personnage
@@ -17,35 +17,35 @@ public class Partie {
 
     public Partie(int positiony) {
         this.positiony = positiony;
-        listeGroupeObstacle=new ArrayList<GroupeObstacle>();
+        listeObstacle=new ArrayList<ObstacleView>();
     }
 
-    public void ajouterGoupeObstacle(GroupeObstacle go)
+   public void ajouterObstacleView(ObstacleView o)
     {
-        listeGroupeObstacle.add(go);
-    }
+        listeObstacle.add(o);
+    }/*
 
     public void GeneretEtAjoutergroupeObstacle()
     {
         ajouterGoupeObstacle(genererGroupeObstacle());
     }
 
-    public void supprimerGroupeObstacle(GroupeObstacle go)
+    public void supprimerGroupeObstacle(GroupeObstacleView go)
     {
 
         listeGroupeObstacle.remove(go);
     }
 
-    public GroupeObstacle genererGroupeObstacle(){
+    public GroupeObstacleView genererGroupeObstacle(){
 
        int nbobstacle= (int)(1+Math.random()*4);
 
-        GroupeObstacle go=new GroupeObstacle(10,10);
+        GroupeObstacleView go=new GroupeObstacleView(10,10);
         int taille;
 
         for (int i=0;i<nbobstacle;i++){
             taille= (int)((Math.random()*(constantes.getLongueurObstacle())+1)/nbobstacle);
-            go.AjouterObstacle(new ObstacleCarre(taille,new Color(0.5,0.5,0.5,0.5)));
+            go.AjouterObstacle(new GroupeObstacleView(taille,new Color(0.5,0.5,0.5,0.5)));
         }
 
         return go;
@@ -61,13 +61,14 @@ public class Partie {
     }
 
 
+*/
 
-    public List<GroupeObstacle> getListeGroupeObstacle() {
-        return listeGroupeObstacle;
+    public List<ObstacleView> getListeObstacle() {
+        return listeObstacle;
     }
 
-    public void setListeGroupeObstacle(List<GroupeObstacle> listeGroupeObstacle) {
-        this.listeGroupeObstacle = listeGroupeObstacle;
+    public void setListeObstacle(List<ObstacleView> listeObstacle) {
+        this.listeObstacle = listeObstacle;
     }
 
     public Personnage getPersonnage() {
@@ -82,9 +83,8 @@ public class Partie {
     public String toString() {
         return "Piste{" +
                 "positiony=" + positiony +
-                ", listeGroupeObstacle=" + listeGroupeObstacle +
+                ", listeGroupeObstacle=" + listeObstacle +
                 ", personnage=" + personnage +
                 '}';
     }
 }
-*/

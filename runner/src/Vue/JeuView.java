@@ -2,23 +2,30 @@ package Vue;
 
 import Modele.Partie;
 import javafx.scene.Group;
+import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
+import javafx.scene.paint.Color;
 
 public class JeuView {
+
     private Pane gamePane = new Pane();
-   // private ImageView mv = new ImageView(new Image("background.jpg"));
-    private Scene laScene;
-    private Partie laPiste = new Partie(100);
+    private Partie p=new Partie(100);
+    private PisteView pisteView = new PisteView(100);
+
 
 
     public Scene getGamePane() {
         Group root = new Group();
-        //root.getChildren().add(mv);
-        PisteView pisteView = new PisteView(100);
+        Scene laScene = new Scene(root);
         root.getChildren().add(pisteView);
-        this.laScene = new Scene(root);
+       ObstacleCarreView carre=new ObstacleCarreView(50,new Color(1,0,0,1));
+        // private ImageView mv = new ImageView(new Image("background.jpg"));
+        root.getChildren().add(carre.getCarre());
         return laScene;
+
+
+
     }
 }
 

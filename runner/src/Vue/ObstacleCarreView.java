@@ -14,5 +14,19 @@ public class ObstacleCarreView extends ObstacleView {
         Carre = new Rectangle(Cote,Cote);
     }
 
+    public int getCote() {
+        return Cote;
+    }
 
+    public void setCote(int cote) {
+        Cote = cote;
+    }
+
+    public Rectangle getCarre() {
+        return Carre;
+    }
+
+    public void setCarre(Rectangle carre) {
+        Carre = carre;
+    }
 }
