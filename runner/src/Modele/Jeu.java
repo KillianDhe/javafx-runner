@@ -1,28 +1,25 @@
 package Modele;
 
+import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
+
 public class Jeu {
-    private int score;
-    private int meilleurScore;
 
-    public Jeu(int score, int meilleurScore) {
-        this.score = score;
-        this.meilleurScore = meilleurScore;
+    private final StringProperty score = new SimpleStringProperty();
+        public String getScore() {return score.get();}
+        public StringProperty scoreProperty() {return score;}
+        public void setScore(String score) {this.score.set(score);}
+
+    private final StringProperty meilleurScore = new SimpleStringProperty();
+        public String getMeilleurScore() {return meilleurScore.get();}
+        public StringProperty meilleurScoreProperty() {return score;}
+        public void setMeilleurScore(String meilleurScore) {this.meilleurScore.set(meilleurScore);}
+
+    public Jeu(String score , String meilleurScore) {
+            this.score.set(score);
+            this.meilleurScore.set(meilleurScore);
+
     }
-
-    public int getScore() {
-        return score;
-    }
-
-    public void setScore(int score) {
-        this.score = score;
-    }
-
-    public int getMeilleurScore() {
-        return meilleurScore;
-    }
-
-    public void setMeilleurScore(int meilleurScore) {
-        this.meilleurScore = meilleurScore;
-    }
-
 }

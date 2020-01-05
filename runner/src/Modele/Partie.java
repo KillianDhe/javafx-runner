@@ -5,10 +5,10 @@ import javafx.scene.paint.Color;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Partie {
+public class    Partie {
 
     private int positiony;
-    private List<ObstacleView> listeObstacle;
+    private List<Obstacle> listeObstacle;
     private Personnage personnage;
 
     //, Personnage personnage
@@ -17,38 +17,39 @@ public class Partie {
 
     public Partie(int positiony) {
         this.positiony = positiony;
-        listeObstacle=new ArrayList<ObstacleView>();
+        listeObstacle=new ArrayList<Obstacle>();
     }
 
-   public void ajouterObstacleView(ObstacleView o)
+   public void ajouterObstacle(Obstacle o)
     {
         listeObstacle.add(o);
-    }/*
-
-    public void GeneretEtAjoutergroupeObstacle()
-    {
-        ajouterGoupeObstacle(genererGroupeObstacle());
     }
 
-    public void supprimerGroupeObstacle(GroupeObstacleView go)
+    public void GeneretEtAjouterObstacle()
     {
-
-        listeGroupeObstacle.remove(go);
+        ajouterObstacle(genererObstacle());
     }
 
-    public GroupeObstacleView genererGroupeObstacle(){
+    public void supprimerObstacle(Obstacle o)
+    {
 
-       int nbobstacle= (int)(1+Math.random()*4);
+        listeObstacle.remove(o);
+    }
 
-        GroupeObstacleView go=new GroupeObstacleView(10,10);
-        int taille;
+    public Obstacle genererObstacle(){
 
-        for (int i=0;i<nbobstacle;i++){
-            taille= (int)((Math.random()*(constantes.getLongueurObstacle())+1)/nbobstacle);
-            go.AjouterObstacle(new GroupeObstacleView(taille,new Color(0.5,0.5,0.5,0.5)));
+        int  cote= (int)((Math.random()*(constantes.getLongueurObstacle())+1));
+        int y=constantes.getHauteurPiste()-cote;
+        if(listeObstacle.isEmpty())
+        {
+            return new ObstacleCarre(900,y,cote);
         }
+        int xmin=listeObstacle.get(listeObstacle.size()-1).getPositionX()+constantes.getLargeurPersonnage()*2;
+        int xmax=xmin+200;
 
-        return go;
+        return new ObstacleCarre((int)(Math.random()*(xmax-xmin + 1))+xmin,y,cote);
+
+
     }
 
 
@@ -61,13 +62,11 @@ public class Partie {
     }
 
 
-*/
-
-    public List<ObstacleView> getListeObstacle() {
+    public List<Obstacle> getListeObstacle() {
         return listeObstacle;
     }
 
-    public void setListeObstacle(List<ObstacleView> listeObstacle) {
+    public void setListeObstacle(List<Obstacle> listeObstacle) {
         this.listeObstacle = listeObstacle;
     }
 

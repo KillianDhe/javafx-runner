@@ -9,9 +9,9 @@ public class PisteView extends Parent {
     private int positiony;
     private Line leSol;
 
-    PisteView(Integer posY) {
+    PisteView(int posY) {
         positiony=posY;
-        leSol= new Line(0,positiony,1100,positiony);
+        leSol= new Line(0,positiony,10000,positiony);
         this.getChildren().add(leSol);
     }
 

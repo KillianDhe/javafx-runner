@@ -2,20 +2,18 @@ package Modele;
 
 public abstract class Personnage {
 
-    private int taille;
+    private static final int hauteur=constantes.getHauteurPersonnage();
+    private static final int largeur=constantes.getLargeurPersonnage();
     private boolean enSaut;
     private boolean enBas;
-    private int longueurSaut;
-    private int hauteurSaut;
+    private static final int longueurSaut=constantes.getLongueurSaut();
+    private static final int hauteurSaut=constantes.getHauteurSaut();
     private int positiony;
     private int positionx;
 
     public Personnage(int positiony,int positionx) {
-        this.setTaille(constantes.getTaillePersonnage());
         this.setEnSaut(false);
         this.setEnBas(false);
-        this.setLongueurSaut(constantes.getLongueurSaut());
-        this.setHauteurSaut(constantes.getHauteurSaut());
         this.setPositionx(positionx);
         this.setPositiony(positiony);
     }
@@ -26,13 +24,10 @@ public abstract class Personnage {
         this.setEnSaut(true);
     }
 
-    public int getTaille() {
-        return taille;
+    public int getHauteur() {
+        return hauteur;
     }
 
-    public void setTaille(int taille) {
-        taille = taille;
-    }
 
     public boolean isEnSaut() {
         return enSaut;
@@ -54,17 +49,11 @@ public abstract class Personnage {
         return longueurSaut;
     }
 
-    public void setLongueurSaut(int longueurSaut) {
-        this.longueurSaut = longueurSaut;
-    }
 
     public int getHauteurSaut() {
         return hauteurSaut;
     }
 
-    public void setHauteurSaut(int hauteurSaut) {
-        this.hauteurSaut = hauteurSaut;
-    }
 
     public int getPositiony() {
         return positiony;
@@ -85,11 +74,8 @@ public abstract class Personnage {
     @Override
     public String toString() {
         return "Personnage{" +
-                "taille=" + taille +
-                ", enSaut=" + enSaut +
+                "enSaut=" + enSaut +
                 ", enBas=" + enBas +
-                ", longueurSaut=" + longueurSaut +
-                ", hauteurSaut=" + hauteurSaut +
                 ", positiony=" + positiony +
                 ", positionx=" + positionx +
                 '}';

@@ -11,20 +11,20 @@ public class JeuView {
 
     private Pane gamePane = new Pane();
     private Partie p=new Partie(100);
-    private PisteView pisteView = new PisteView(100);
+    private PisteView pisteView = new PisteView(500);
+    private PersonnageView persoview = new PersonnageView(300);
 
 
 
     public Scene getGamePane() {
+
         Group root = new Group();
         Scene laScene = new Scene(root);
         root.getChildren().add(pisteView);
-       ObstacleCarreView carre=new ObstacleCarreView(50,new Color(1,0,0,1));
-        // private ImageView mv = new ImageView(new Image("background.jpg"));
+        root.getChildren().add(persoview);
+        ObstacleCarreView carre=new ObstacleCarreView(50,new Color(1,0,0,1));
         root.getChildren().add(carre.getCarre());
         return laScene;
-
-
 
     }
 }

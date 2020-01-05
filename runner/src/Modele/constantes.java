@@ -18,11 +18,16 @@ public class constantes {
         return 45;
     }
 
-    public static int getTaillePersonnage(){
-        return 50;
+    public static int getHauteurPersonnage(){
+        return 100;
+    }
+    public static int getLargeurPersonnage(){
+        return 30;
     }
 
-
+    public static int getHauteurPiste(){
+        return 500;
+    }
     public static int getLongueurObstacle() {
         return getLongueurGroupeObstacle();
     }

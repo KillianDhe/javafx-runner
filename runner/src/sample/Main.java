@@ -1,30 +1,44 @@
 package sample;
 
-import Modele.*;
+import Modele.Jeu;
+import Modele.Partie;
 import Vue.JeuView;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Group;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.TextArea;
-import javafx.scene.layout.Pane;
-import javafx.scene.paint.Color;
-import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 
 public class Main extends Application {
 
+
+
+
     @Override
     public void start(Stage primaryStage) throws Exception{
 
-        JeuView leJeu = new JeuView();
+            System.out.println("ca marche");
+            Parent root = FXMLLoader.load(getClass().getResource("/fxml/Menu.fxml"));
+            Scene scene = new Scene(root);
+            primaryStage.setScene(scene);
+            primaryStage.show();
+
+            Partie p1=new Partie(300);
+            p1.GeneretEtAjouterObstacle();
+            p1.GeneretEtAjouterObstacle();
+
+
+            System.out.println(p1.getListeObstacle());
+
+/*
+       JeuView leJeu = new JeuView();
         primaryStage.setTitle("Runner");
         primaryStage.setWidth(1100);
         primaryStage.setHeight(700);
         primaryStage.setResizable(false);
         primaryStage.setScene(leJeu.getGamePane());
         primaryStage.show();
+*/
 
 
         /*Piste p1 = new Piste(10,new bonhomme(new Color(0.5,0.5,0.5,0.5),100,100));
