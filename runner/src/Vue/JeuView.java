@@ -1,18 +1,29 @@
 package Vue;
 
+import Modele.ObstacleCarre;
 import Modele.Partie;
+import Modele.Personnage;
 import javafx.scene.Group;
 import javafx.scene.Node;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
+
+import javax.lang.model.type.NullType;
+import java.net.URISyntaxException;
 
 public class JeuView {
 
     private Pane gamePane = new Pane();
-    private Partie p=new Partie(100);
     private PisteView pisteView = new PisteView(500);
-    private PersonnageView persoview = new PersonnageView(300);
+    private PersonnageView persoview=new PersonnageView(new Personnage(),new Image(getClass().getResource("/image/santa.png").toString()));
+    private ObstacleCarreView obstacleCarreView=new ObstacleCarreView(new ObstacleCarre(300,450,50),new Image(getClass().getResource("/image/cadeau.jpg").toString()));
+    private ObstacleCarreView obstacleCarreView2=new ObstacleCarreView(new ObstacleCarre(500,450,50),new Image(getClass().getResource("/image/cadeau.jpg").toString()));
+    private ObstacleCarreView obstacleCarreView3=new ObstacleCarreView(new ObstacleCarre(700,450,50),new Image(getClass().getResource("/image/cadeau.jpg").toString()));
+
+
+
 
 
 
@@ -21,9 +32,11 @@ public class JeuView {
         Group root = new Group();
         Scene laScene = new Scene(root);
         root.getChildren().add(pisteView);
-        root.getChildren().add(persoview);
-        ObstacleCarreView carre=new ObstacleCarreView(50,new Color(1,0,0,1));
-        root.getChildren().add(carre.getCarre());
+        root.getChildren().add(persoview.getRectangle());
+        root.getChildren().add(obstacleCarreView.getRectangle());
+        root.getChildren().add(obstacleCarreView2.getRectangle());
+        root.getChildren().add(obstacleCarreView3.getRectangle());
+
         return laScene;
 
     }

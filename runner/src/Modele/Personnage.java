@@ -1,32 +1,25 @@
 package Modele;
 
-public abstract class Personnage {
+public class Personnage {
 
-    private static final int hauteur=constantes.getHauteurPersonnage();
-    private static final int largeur=constantes.getLargeurPersonnage();
+
     private boolean enSaut;
     private boolean enBas;
     private static final int longueurSaut=constantes.getLongueurSaut();
     private static final int hauteurSaut=constantes.getHauteurSaut();
-    private int positiony;
-    private int positionx;
 
-    public Personnage(int positiony,int positionx) {
+
+    public Personnage() {
         this.setEnSaut(false);
         this.setEnBas(false);
-        this.setPositionx(positionx);
-        this.setPositiony(positiony);
     }
 
 
     public void sauter(){
-        this.setPositiony(this.getPositiony()+50);
+       // this.setPositiony(this.getPositiony()+50);
         this.setEnSaut(true);
     }
 
-    public int getHauteur() {
-        return hauteur;
-    }
 
 
     public boolean isEnSaut() {
@@ -55,29 +48,4 @@ public abstract class Personnage {
     }
 
 
-    public int getPositiony() {
-        return positiony;
-    }
-
-    public void setPositiony(int positiony) {
-        this.positiony = positiony;
-    }
-
-    public int getPositionx() {
-        return positionx;
-    }
-
-    public void setPositionx(int positionx) {
-        this.positionx = positionx;
-    }
-
-    @Override
-    public String toString() {
-        return "Personnage{" +
-                "enSaut=" + enSaut +
-                ", enBas=" + enBas +
-                ", positiony=" + positiony +
-                ", positionx=" + positionx +
-                '}';
-    }
 }

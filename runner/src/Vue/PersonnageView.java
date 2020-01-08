@@ -1,28 +1,30 @@
 package Vue;
 
-import javafx.scene.Parent;
+import Modele.constantes;
+import javafx.scene.image.Image;
+import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Rectangle;
 
-public class PersonnageView extends Parent {
+public class PersonnageView {
 
-        private Rectangle perso;
-        private int PositionY;
+    private Modele.Personnage personnage;
+    private Rectangle rectangle;
+    private static final int hauteur= constantes.getHauteurPersonnage();
+    private static final int largeur=constantes.getLargeurPersonnage();
+    private static final int positiony=constantes.getHauteurPiste()-hauteur;
+    private static final int positionx=100;
 
-    public PersonnageView(int posY) {
-        PositionY = posY;
-        perso = new Rectangle(100,posY,50,200);
-        this.getChildren().add(perso);
+    public PersonnageView(Modele.Personnage personnage,Image image) {
+        this.personnage = personnage;
+        rectangle=new Rectangle();
+        rectangle.setFill(new ImagePattern(image));
+        rectangle.setX(positionx);
+        rectangle.setY(positiony);
+        rectangle.setHeight(hauteur);
+        rectangle.setWidth(largeur);
     }
 
-    public Rectangle getPerso() {
-        return perso;
-    }
-
-    public void setPerso(Rectangle perso) {
-        this.perso = perso;
-    }
-
-    public int getPositionY() {
-        return PositionY;
+    public Rectangle getRectangle() {
+        return rectangle;
     }
 }

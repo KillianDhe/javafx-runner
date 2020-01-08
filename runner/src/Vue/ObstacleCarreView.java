@@ -1,37 +1,29 @@
 package Vue;
 
+import Modele.Obstacle;
+import Modele.ObstacleCarre;
 import Modele.constantes;
+import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
+import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Rectangle;
 
-public class ObstacleCarreView extends ObstacleView {
+public class ObstacleCarreView {
 
-    private int Cote;
-    private Rectangle Carre ;
+    private Modele.ObstacleCarre obstacleCarre;
+    private Rectangle rectangle;
 
-    ObstacleCarreView(int Cote, Color couleur){
-        super(Cote,Cote,couleur);
-        this.Cote=Cote;
-        Carre = new Rectangle(Cote,Cote);
-        Carre.setY(constantes.getHauteurPiste()-Cote);
-        Carre.setX(800);
-        Carre.setFill(couleur);
-
+    public ObstacleCarreView(ObstacleCarre obstacleCarre, Image image) {
+        this.obstacleCarre = obstacleCarre;
+        rectangle=new Rectangle();
+        rectangle.setFill(new ImagePattern(image));
+        rectangle.setWidth(obstacleCarre.getLargeur());
+        rectangle.setHeight(obstacleCarre.getHauteur());
+        rectangle.setX(obstacleCarre.getPositionX());
+        rectangle.setY(obstacleCarre.getPositionY());
     }
 
-    public int getCote() {
-        return Cote;
-    }
-
-    public void setCote(int cote) {
-        Cote = cote;
-    }
-
-    public Rectangle getCarre() {
-        return Carre;
-    }
-
-    public void setCarre(Rectangle carre) {
-        Carre = carre;
+    public Rectangle getRectangle() {
+        return rectangle;
     }
 }

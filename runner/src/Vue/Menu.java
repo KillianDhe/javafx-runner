@@ -11,6 +11,8 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import sample.Main;
 
+import java.net.URISyntaxException;
+
 public class Menu {
 
     @FXML
