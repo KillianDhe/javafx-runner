@@ -17,18 +17,18 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception{
 
-            System.out.println("ca marche");
-            Parent root = FXMLLoader.load(getClass().getResource("/fxml/Menu.fxml"));
-            Scene scene = new Scene(root);
-            primaryStage.setScene(scene);
-            primaryStage.show();
+                System.out.println("ca marche");
+                Parent root = FXMLLoader.load(getClass().getResource("/fxml/Menu.fxml"));
+                Scene scene = new Scene(root);
+                primaryStage.setScene(scene);
+                primaryStage.show();
 
-            Partie p1=new Partie(300);
-            p1.GeneretEtAjouterObstacle();
-            p1.GeneretEtAjouterObstacle();
+                Partie p1 = new Partie(300);
+                p1.GeneretEtAjouterObstacle();
+                p1.GeneretEtAjouterObstacle();
 
 
-            System.out.println(p1.getListeObstacle());
+                System.out.println(p1.getListeObstacle());
 
 /*
        JeuView leJeu = new JeuView();

@@ -1,5 +1,8 @@
 package Modele;
 
+import javafx.animation.Animation;
+import javafx.animation.AnimationTimer;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -83,5 +86,17 @@ public class    Partie {
                 ", listeGroupeObstacle=" + listeObstacle +
                 ", personnage=" + personnage +
                 '}';
+    }
+
+    public void Rafraichir(){
+        AnimationTimer Animation = new AnimationTimer() {
+            @Override
+            public void handle(long l) {
+                for (Obstacle obstacle : listeObstacle
+                     ) {
+                    obstacle.setPositionX(obstacle.getPositionX() - 2);
+                }
+            }
+        };
     }
 }

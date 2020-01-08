@@ -10,7 +10,7 @@ import javafx.scene.image.Image;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 
-import javax.lang.model.type.NullType;
+
 import java.net.URISyntaxException;
 
 public class JeuView {
