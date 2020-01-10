@@ -34,6 +34,8 @@ public abstract class  Obstacle {
                 '}';
     }
 
+    public abstract void move();
+
 
     public int getPositionY() {
         return positionY;

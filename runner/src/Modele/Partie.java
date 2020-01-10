@@ -1,65 +1,34 @@
 package Modele;
 
+import Vue.ObstacleCarreView;
 import javafx.animation.Animation;
 import javafx.animation.AnimationTimer;
+import javafx.beans.Observable;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
+import javafx.collections.FXCollections;
+import javafx.collections.ListChangeListener;
+import javafx.collections.ObservableList;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 public class Partie {
 
-    private List<ObstacleCarre> listeObstacle;
+    private ObservableList<Obstacle> listeObstacle= FXCollections.observableArrayList();
     private Personnage personnage;
 
+    //private GenerateurObstacle generateurObstacle=new GenerateurObstacle();
 
 
     public Partie(Personnage p) {
-        listeObstacle=new ArrayList<ObstacleCarre>();
+
         this.personnage=personnage;
     }
 
-   public void ajouterObstacle(ObstacleCarre o)
-    {
-        listeObstacle.add(o);
-    }
-
-    public void GeneretEtAjouterObstacle()
-    {
-        ajouterObstacle(genererObstacle());
-    }
-
-    public void supprimerObstacle(ObstacleCarre o)
-    {
-
-        listeObstacle.remove(o);
-    }
-
-    public ObstacleCarre genererObstacle(){
-
-        int  cote= (int)((Math.random()*(constantes.getLongueurObstacle()-20)+1)+constantes.getLongueurObstacle());
-        int y=constantes.getHauteurPiste()-cote;
-        if(listeObstacle.isEmpty())
-        {
-            return new ObstacleCarre(900,y,cote);
-        }
-        int xmin=listeObstacle.get(listeObstacle.size()-1).getPositionX()+constantes.getLargeurPersonnage()*2;
-        int xmax=xmin+200;
-
-        return new ObstacleCarre((int)(Math.random()*(xmax-xmin + 1))+xmin,y,cote);
-
-
-    }
-
-
-
-
-
-    public List<ObstacleCarre> getListeObstacle() {
+    public ObservableList<Obstacle> getListeObstacle() {
         return listeObstacle;
-    }
-
-    public void setListeObstacle(List<ObstacleCarre> listeObstacle) {
-        this.listeObstacle = listeObstacle;
     }
 
     public Personnage getPersonnage() {
@@ -84,10 +53,24 @@ public class Partie {
             @Override
             public void handle(long l) {
 
-
-                for(ObstacleCarre obstacleCarre: listeObstacle){
-                    obstacleCarre.positionXProperty().set((obstacleCarre.positionXProperty().getValue())-1);
+                for(Obstacle obstacle: listeObstacle){
+                    obstacle.move();
                 }
+
+                Random r = new Random();
+                if (r.nextInt(200) == 50) {
+                    listeObstacle.add(GenerateurObstacle.genererObstacle(null));
+                    /*
+                    if(listeObstacle.size()>1){
+                        listeObstacle.add(GenerateurObstacle.genererObstacle(listeObstacle.get(listeObstacle.size()-1)));
+                        System.out.println("un carre a été ajouté");
+                    }
+                    else{
+                        listeObstacle.add(GenerateurObstacle.genererObstacle(null));
+                        System.out.println("un carre a été ajouté");
+                    }*/
+
+                    }
 
 
             }

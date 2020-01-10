@@ -9,12 +9,13 @@ import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
+import javafx.scene.Parent;
 import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Rectangle;
 
-public class ObstacleCarreView {
+public class ObstacleCarreView extends Parent {
 
     private Modele.ObstacleCarre obstacleCarre;
     private Rectangle rectangle;
@@ -34,14 +35,9 @@ public class ObstacleCarreView {
         rectangle.setWidth(obstacleCarre.getLargeur());
         rectangle.setHeight(obstacleCarre.getHauteur());
         positionX.bind(obstacleCarre.positionXProperty());
-        rectangle.setX((obstacleCarre.positionXProperty().get()));
+        rectangle.xProperty().bind(obstacleCarre.positionXProperty());
         rectangle.setY(obstacleCarre.getPositionY());
-
-        positionX.addListener( new ChangeListener<Number>() {
-            public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
-               rectangle.setX((newValue.doubleValue()));
-            }
-        } );
+        this.getChildren().add(rectangle);
 
 
     }

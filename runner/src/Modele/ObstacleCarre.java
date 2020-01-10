@@ -16,4 +16,8 @@ public class ObstacleCarre extends Obstacle {
         this.cote = cote;
     }
 
+    public void move(){
+        positionXProperty().set((positionXProperty().getValue())-1);
+    }
+
 }

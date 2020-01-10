@@ -18,7 +18,7 @@ import javafx.stage.Stage;
 public class Main extends Application {
 
 
-
+    public static final Jeu monJeu = new Jeu();
 
     @Override
     public void start(Stage primaryStage) throws Exception{
@@ -28,10 +28,10 @@ public class Main extends Application {
             Scene scene = new Scene(root);
             primaryStage.setScene(scene);
             primaryStage.show();
-            Jeu j1=new Jeu(new Partie(new Personnage()),30,120);
-            j1.getPartie().GeneretEtAjouterObstacle();
+            monJeu.setPartie(new Partie(new Personnage()));
+            //j1.getPartie().GeneretEtAjouterObstacle();
 
-            System.out.println(j1.getPartie().getListeObstacle());
+            //System.out.println(monJeu.getPartie().getListeObstacle());
 
 
 
