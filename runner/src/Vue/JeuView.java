@@ -42,11 +42,9 @@ public class JeuView {
                 while (change.next()) {
                     if (change.wasAdded()) {
                         change.getList().forEach(obstacleTmp -> {
-                            ObstacleCarreView obstacleCarreView = new ObstacleCarreView((ObstacleCarre) obstacleTmp, new Image(getClass().getResource("/image/santa.png").toString()));
+                            ObstacleCarreView obstacleCarreView = new ObstacleCarreView((ObstacleCarre) obstacleTmp, new Image(getClass().getResource("/image/cadeau.jpg").toString()));
                             listObstacleView.add(obstacleCarreView);
                             root.getChildren().add(obstacleCarreView);
-                            System.out.println("Un carre view a été ajouté");
-
                         });
 
 

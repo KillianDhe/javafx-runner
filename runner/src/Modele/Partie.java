@@ -23,7 +23,7 @@ public class Partie {
 
 
     public Partie(Personnage p) {
-
+        listeObstacle.add(GenerateurObstacle.genererObstacle(null));
         this.personnage=personnage;
     }
 
@@ -59,16 +59,8 @@ public class Partie {
 
                 Random r = new Random();
                 if (r.nextInt(200) == 50) {
-                    listeObstacle.add(GenerateurObstacle.genererObstacle(null));
-                    /*
-                    if(listeObstacle.size()>1){
+
                         listeObstacle.add(GenerateurObstacle.genererObstacle(listeObstacle.get(listeObstacle.size()-1)));
-                        System.out.println("un carre a été ajouté");
-                    }
-                    else{
-                        listeObstacle.add(GenerateurObstacle.genererObstacle(null));
-                        System.out.println("un carre a été ajouté");
-                    }*/
 
                     }
 
