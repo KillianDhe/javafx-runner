@@ -7,21 +7,27 @@ import javafx.beans.property.StringProperty;
 
 public class Jeu {
 
-    private final StringProperty score = new SimpleStringProperty();
-        public String getScore() {return score.get();}
-        public StringProperty scoreProperty() {return score;}
-        public void setScore(String score) {this.score.set(score);}
+        Partie partie;
 
-    private final StringProperty meilleurScore = new SimpleStringProperty();
-        public String getMeilleurScore() {return meilleurScore.get();}
-        public StringProperty meilleurScoreProperty() {return score;}
-        public void setMeilleurScore(String meilleurScore) {this.meilleurScore.set(meilleurScore);}
-
-    public Jeu(String score , String meilleurScore) {
-            this.score.set(score);
-            this.meilleurScore.set(meilleurScore);
-
+    public Partie getPartie() {
+        return partie;
     }
 
+
+    private final IntegerProperty score = new SimpleIntegerProperty();
+        public Integer getScore() {return score.get();}
+        public IntegerProperty scoreProperty() {return score;}
+        public void setScore(Integer score) {this.score.set(score);}
+
+    private final IntegerProperty meilleurScore = new SimpleIntegerProperty();
+        public Integer getMeilleurScore() {return meilleurScore.get();}
+        public IntegerProperty meilleurScoreProperty() {return score;}
+        public void setMeilleurScore(Integer meilleurScore) {this.meilleurScore.set(meilleurScore);}
+
+    public Jeu(Partie partie,int score , int meilleurScore) {
+            this.score.set(score);
+            this.meilleurScore.set(meilleurScore);
+            this.partie=partie;
+    }
 
 }

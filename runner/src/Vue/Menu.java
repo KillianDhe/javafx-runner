@@ -2,6 +2,9 @@ package Vue;
 
 
 import Modele.Jeu;
+import Modele.Partie;
+import Modele.Personnage;
+import javafx.beans.binding.Bindings;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -23,8 +26,9 @@ public class Menu {
 
     public void initialize() {
 
-        Jeu j1=new Jeu("30","122");
-        meilleurScore.textProperty().bind(j1.meilleurScoreProperty());
+        Jeu j1=new Jeu(new Partie(new Personnage()),30,122);
+        meilleurScore.textProperty().bind(Bindings.convert(j1.meilleurScoreProperty()));
+        dernierScore.textProperty().bind(Bindings.convert(j1.scoreProperty()));
 
     }
 

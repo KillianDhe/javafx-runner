@@ -6,22 +6,19 @@ import javafx.animation.AnimationTimer;
 import java.util.ArrayList;
 import java.util.List;
 
-public class    Partie {
+public class Partie {
 
-    private int positiony;
-    private List<Obstacle> listeObstacle;
+    private List<ObstacleCarre> listeObstacle;
     private Personnage personnage;
 
-    //, Personnage personnage
-    //this.personnage=personnage;
 
 
-    public Partie(int positiony) {
-        this.positiony = positiony;
-        listeObstacle=new ArrayList<Obstacle>();
+    public Partie(Personnage p) {
+        listeObstacle=new ArrayList<ObstacleCarre>();
+        this.personnage=personnage;
     }
 
-   public void ajouterObstacle(Obstacle o)
+   public void ajouterObstacle(ObstacleCarre o)
     {
         listeObstacle.add(o);
     }
@@ -31,15 +28,15 @@ public class    Partie {
         ajouterObstacle(genererObstacle());
     }
 
-    public void supprimerObstacle(Obstacle o)
+    public void supprimerObstacle(ObstacleCarre o)
     {
 
         listeObstacle.remove(o);
     }
 
-    public Obstacle genererObstacle(){
+    public ObstacleCarre genererObstacle(){
 
-        int  cote= (int)((Math.random()*(constantes.getLongueurObstacle())+1));
+        int  cote= (int)((Math.random()*(constantes.getLongueurObstacle()-20)+1)+constantes.getLongueurObstacle());
         int y=constantes.getHauteurPiste()-cote;
         if(listeObstacle.isEmpty())
         {
@@ -54,20 +51,14 @@ public class    Partie {
     }
 
 
-    public int getPositiony() {
-        return positiony;
-    }
-
-    public void setPositiony(int positiony) {
-        this.positiony = positiony;
-    }
 
 
-    public List<Obstacle> getListeObstacle() {
+
+    public List<ObstacleCarre> getListeObstacle() {
         return listeObstacle;
     }
 
-    public void setListeObstacle(List<Obstacle> listeObstacle) {
+    public void setListeObstacle(List<ObstacleCarre> listeObstacle) {
         this.listeObstacle = listeObstacle;
     }
 
@@ -82,21 +73,25 @@ public class    Partie {
     @Override
     public String toString() {
         return "Piste{" +
-                "positiony=" + positiony +
                 ", listeGroupeObstacle=" + listeObstacle +
                 ", personnage=" + personnage +
                 '}';
     }
 
     public void Rafraichir(){
-        AnimationTimer Animation = new AnimationTimer() {
+        AnimationTimer gameLoop = new AnimationTimer() {
+
             @Override
             public void handle(long l) {
-                for (Obstacle obstacle : listeObstacle
-                     ) {
-                    obstacle.setPositionX(obstacle.getPositionX() - 2);
+
+
+                for(ObstacleCarre obstacleCarre: listeObstacle){
+                    obstacleCarre.positionXProperty().set((obstacleCarre.positionXProperty().getValue())-1);
                 }
+
+
             }
         };
+        gameLoop.start();
     }
 }

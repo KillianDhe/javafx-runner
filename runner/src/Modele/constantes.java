@@ -7,7 +7,7 @@ public class constantes {
     }
 
     public static int getLongueurSaut() {
-        return 50;
+        return 45;
     }
 
     public static int getHauteurObstacle() {
@@ -15,7 +15,7 @@ public class constantes {
     }
 
     public static int getLongueurGroupeObstacle() {
-        return 45;
+        return 50;
     }
 
     public static int getHauteurPersonnage(){

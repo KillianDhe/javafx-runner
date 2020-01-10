@@ -1,11 +1,12 @@
 package Vue;
 
 import Modele.constantes;
+import javafx.scene.Parent;
 import javafx.scene.image.Image;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Rectangle;
 
-public class PersonnageView {
+public class PersonnageView extends Parent {
 
     private Modele.Personnage personnage;
     private Rectangle rectangle;
@@ -22,6 +23,7 @@ public class PersonnageView {
         rectangle.setY(positiony);
         rectangle.setHeight(hauteur);
         rectangle.setWidth(largeur);
+        this.getChildren().add(rectangle);
     }
 
     public Rectangle getRectangle() {
