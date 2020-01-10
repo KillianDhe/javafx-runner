@@ -28,13 +28,14 @@ public class Main extends Application {
             Scene scene = new Scene(root);
             primaryStage.setScene(scene);
             primaryStage.show();
-
             Jeu j1=new Jeu(new Partie(new Personnage()),30,120);
             j1.getPartie().GeneretEtAjouterObstacle();
-            j1.getPartie().GeneretEtAjouterObstacle();
-
 
             System.out.println(j1.getPartie().getListeObstacle());
+
+
+
+
 
 /*        PisteView pisteView = new PisteView(500);
         PersonnageView persoview = new PersonnageView(new Personnage(), new Image(getClass().getResource("/image/santa.png").toString()));

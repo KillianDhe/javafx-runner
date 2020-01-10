@@ -27,12 +27,10 @@ public class JeuView {
         Scene laScene = new Scene(root);
         root.getChildren().add(pisteView);
         root.getChildren().add(persoview);
+        for (int i = 0; i < 20; i++) {
             j1.getPartie().GeneretEtAjouterObstacle();
-            j1.getPartie().GeneretEtAjouterObstacle();
-            j1.getPartie().GeneretEtAjouterObstacle();
-            j1.getPartie().GeneretEtAjouterObstacle();
-            j1.getPartie().GeneretEtAjouterObstacle();
-            j1.getPartie().GeneretEtAjouterObstacle();
+        }
+
             j1.getPartie().Rafraichir();
             for(ObstacleCarre obstacleCarre: j1.getPartie().getListeObstacle()){
                 ObstacleCarreView ob=new ObstacleCarreView(obstacleCarre, new Image(getClass().getResource("/image/cadeau.jpg").toString()));
