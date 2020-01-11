@@ -25,8 +25,8 @@ public class GenerateurObstacle {
         if (lastObstacle == null) {
             obstacle = new ObstacleCarre(900,y,cote);
         }else {
-            double xmin=lastObstacle.getPositionX()+constantes.getLargeurPersonnage()*2;
-            double xmax=xmin+200;
+            double xmin=lastObstacle.getPositionX()+constantes.getLargeurPersonnage()*6;
+            double xmax=xmin+300;
             obstacle = new ObstacleCarre(Math.random()*(xmax-xmin + 1)+xmin,y,cote);
         }
 

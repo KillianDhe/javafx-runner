@@ -4,11 +4,17 @@ import Vue.ObstacleCarreView;
 import javafx.animation.Animation;
 import javafx.animation.AnimationTimer;
 import javafx.beans.Observable;
+import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
+import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
+import javafx.scene.shape.Rectangle;
+import javafx.scene.shape.Shape;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,6 +24,11 @@ public class Partie {
 
     private ObservableList<Obstacle> listeObstacle= FXCollections.observableArrayList();
     private Personnage personnage;
+    private final IntegerProperty score = new SimpleIntegerProperty();
+    public Integer getScore() {return score.get();}
+    public IntegerProperty scoreProperty() {return score;}
+    public void setScore(Integer score) {this.score.set(score);}
+
 
     //private GenerateurObstacle generateurObstacle=new GenerateurObstacle();
 
@@ -25,6 +36,7 @@ public class Partie {
     public Partie(Personnage p) {
         listeObstacle.add(GenerateurObstacle.genererObstacle(null));
         this.personnage=p;
+        score.set(0);
     }
 
     public ObservableList<Obstacle> getListeObstacle() {
@@ -47,15 +59,18 @@ public class Partie {
                 '}';
     }
 
-    public void Rafraichir(){
+
+    public void rafraichir(Rectangle rectangle, List<ObstacleCarreView> listObstacleView) {
         AnimationTimer gameLoop = new AnimationTimer() {
-            long old=0;
+            long old = 0;
             double dt;
+
             @Override
             public void handle(long l) {
-                dt=(double)(l-old)/100000000;
+                dt = (double) (l - old) / 100000000;
+                score.set((score.getValue() + 1));
                 personnage.refreshPosition(dt);
-                for(Obstacle obstacle: listeObstacle){
+                for (Obstacle obstacle : listeObstacle) {
                     obstacle.move(dt);
                 }
                 cleanObstacleList();
@@ -64,11 +79,37 @@ public class Partie {
                 if (r.nextInt(140) == 50) {
                     listeObstacle.add(GenerateurObstacle.genererObstacle(listeObstacle));
                 }
-                old=l;
+
+                boolean collisionDetected = false;
+                for (ObstacleCarreView static_bloc : listObstacleView) {
+                    if (static_bloc.getRectangle() != rectangle) {
+                        Shape intersect = Shape.intersect(rectangle, static_bloc.getRectangle());
+                        if (intersect.getBoundsInLocal().getWidth() != -1) {
+                            collisionDetected = true;
+                        }
+                    }
+                }
+
+                if (collisionDetected) {
+                    System.out.println("-----------------------------CCCCCCCCCCCCOOOOOOOOOOOOOOLLLLLLLLLLISSSSSSSSSSSSSSSSSSSIIIIIIIIIIIIIIIOOOOOOOOOOOOOOOONNNNNNNNNNNN-----------------------------------------");
+                }
+
+                old = l;
             }
+
         };
         gameLoop.start();
     }
+
+  /*  public void Reprendre(){
+
+        gameLoop.start();
+    }
+
+    public void arreterRafraichir(){
+
+        gameLoop.stop();
+    }*/
 
     private void cleanObstacleList() {
         List<Obstacle> listeObstacleDelete = new ArrayList<>();
@@ -78,7 +119,10 @@ public class Partie {
             }
         });
         listeObstacle.removeAll(listeObstacleDelete);
-        System.out.println("Nb d'obstacles : " + listeObstacle.size());
+       /* System.out.println("Nb d'obstacles : " + listeObstacle.size());
         System.out.println("Nb obstacle on Screen : " +listeObstacle.stream().filter(obstacle -> {return obstacle.isOnScreen;}).count());
+
+*/
+
     }
 }

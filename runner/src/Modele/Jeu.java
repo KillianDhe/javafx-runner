@@ -13,20 +13,23 @@ public class Jeu {
     }
 
     public Jeu() {
+        this.meilleurScore.set(0);
     }
-
-    private final IntegerProperty score = new SimpleIntegerProperty();
-        public Integer getScore() {return score.get();}
-        public IntegerProperty scoreProperty() {return score;}
-        public void setScore(Integer score) {this.score.set(score);}
 
     private final IntegerProperty meilleurScore = new SimpleIntegerProperty();
         public Integer getMeilleurScore() {return meilleurScore.get();}
         public IntegerProperty meilleurScoreProperty() {return meilleurScore;}
         public void setMeilleurScore(Integer meilleurScore) {this.meilleurScore.set(meilleurScore);}
 
-    public Jeu(Partie partie,int score , int meilleurScore) {
-            this.score.set(score);
+/*
+    private final IntegerProperty score = new SimpleIntegerProperty();
+    public Integer getScore() {return score.get();}
+    public IntegerProperty scoreProperty() {return score;}
+    public void setScore(Integer score) {this.score.set(score);}
+*/
+
+
+    public Jeu(Partie partie , int meilleurScore) {
             this.meilleurScore.set(meilleurScore);
             this.partie=partie;
     }

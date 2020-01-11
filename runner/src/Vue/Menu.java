@@ -26,15 +26,13 @@ public class Menu {
 
     public void initialize() {
 
-        Jeu j1=new Jeu(new Partie(new Personnage()),30,122);
-        meilleurScore.textProperty().bind(Bindings.convert(j1.meilleurScoreProperty()));
-        dernierScore.textProperty().bind(Bindings.convert(j1.scoreProperty()));
+        meilleurScore.textProperty().bind(Bindings.convert(Main.monJeu.meilleurScoreProperty()));
+        dernierScore.textProperty().bind(Bindings.convert(Main.monJeu.getPartie().scoreProperty()));
 
     }
 
     @FXML
     void clicSurJouer(ActionEvent event) {
-        System.out.println("ca marche");
 
         JeuView leJeu = new JeuView();
         Stage stage =new Stage();

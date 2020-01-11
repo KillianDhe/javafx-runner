@@ -70,7 +70,7 @@ public class Personnage {
     public void sauter(){
         if(!enSaut)
         {
-            velocite=100;
+            velocite=120;
             enSaut=true;
         }
 
@@ -80,7 +80,7 @@ public class Personnage {
 
        positionY.setValue(positionY.get()-velocite*dt);
        if (enSaut) {
-           velocite=velocite-10*dt;
+           velocite=velocite-40*dt;
        }
        if(positionY.getValue()>constantes.getHauteurPiste())
        {

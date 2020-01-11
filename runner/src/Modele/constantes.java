@@ -22,7 +22,7 @@ public class constantes {
         return 100;
     }
     public static int getLargeurPersonnage(){
-        return 100;
+        return 60;
     }
     public static double getPosPerso(){return 100;}
     public static int getHauteurPiste(){

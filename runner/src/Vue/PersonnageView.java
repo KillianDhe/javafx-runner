@@ -23,7 +23,7 @@ public class PersonnageView extends Parent {
     public DoubleProperty positionYProperty() {return positionY;}
     public void setPositionY(Double positionY) {this.positionY.set(positionY);}
 
-    private static final int positionx=0;
+    private static final int positionx=100;
 
     public PersonnageView(Modele.Personnage personnage,Image image) {
         positionY.bind(personnage.positionYProperty());
