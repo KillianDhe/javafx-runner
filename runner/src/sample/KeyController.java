@@ -1,5 +1,6 @@
 package sample;
 
+import Modele.Personnage;
 import javafx.scene.Scene;
 import javafx.scene.input.KeyCode;
 
@@ -10,8 +11,7 @@ public class KeyController {
         scene.setOnKeyPressed(ke -> {
             KeyCode keyCode = ke.getCode();
             if (keyCode.equals(KeyCode.SPACE)) {
-                //appelle fonction sauter du personnage
-                return;
+                System.out.println("A key was pressed");
             }
         });
     }

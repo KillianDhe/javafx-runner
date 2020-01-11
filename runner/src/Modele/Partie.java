@@ -24,7 +24,7 @@ public class Partie {
 
     public Partie(Personnage p) {
         listeObstacle.add(GenerateurObstacle.genererObstacle(null));
-        this.personnage=personnage;
+        this.personnage=p;
     }
 
     public ObservableList<Obstacle> getListeObstacle() {
@@ -49,10 +49,12 @@ public class Partie {
 
     public void Rafraichir(){
         AnimationTimer gameLoop = new AnimationTimer() {
-
+            long old=0;
+            long dt;
             @Override
             public void handle(long l) {
-
+                dt=l-old;
+                personnage.refreshPosition(dt);
                 for(Obstacle obstacle: listeObstacle){
                     obstacle.move();
                 }
@@ -64,8 +66,9 @@ public class Partie {
 
                     }
 
-
+                old=l;
             }
+
         };
         gameLoop.start();
     }

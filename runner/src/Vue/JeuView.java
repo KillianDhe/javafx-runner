@@ -1,12 +1,16 @@
 package Vue;
 
 import Modele.*;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
+import javafx.scene.input.KeyCode;
 import javafx.scene.layout.Pane;
+import javafx.scene.shape.Rectangle;
 import sample.Main;
 
 import javax.crypto.spec.PSource;
@@ -28,9 +32,22 @@ public class JeuView {
         root = new Group();
         Scene laScene = new Scene(root);
         root.getChildren().add(pisteView);
-        root.getChildren().add(persoview);
+        root.getChildren().add(persoview.getRectangle());
+        laScene.setOnKeyPressed(ke -> {
+            KeyCode keyCode = ke.getCode();
+            if (keyCode.equals(KeyCode.SPACE)) {
+
+              persoview.getPersonnage().sauter();
+                System.out.println("A key was pressed");
+            }
+        });
+
         this.initializeListener();
+        this.initializeListener2();
         Main.monJeu.getPartie().Rafraichir();
+
+        Rectangle r=new Rectangle(200,400,50,50);
+        root.getChildren().add(r);
 
         return laScene;
     }
@@ -50,6 +67,21 @@ public class JeuView {
 
                     }
                 }
+            }
+        });
+
+
+
+    }
+    private void initializeListener2(){
+        Main.monJeu.getPartie().getPersonnage().positionYProperty().addListener(new ChangeListener<Number>() {
+            @Override
+            public void changed(ObservableValue<? extends Number> observableValue, Number number, Number t1) {
+
+                System.out.println( "ancienne"+ number);
+                System.out.println(  "nouvelle "+ t1);
+                System.out.println(persoview.positionY.getValue());
+
             }
         });
 
