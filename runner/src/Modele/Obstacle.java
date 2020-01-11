@@ -58,5 +58,6 @@ public abstract class  Obstacle {
     }
 
     public void setPositionY(int positionY) {
-        this.positionY = positionY;    }
+        this.positionY = positionY;
+    }
 }

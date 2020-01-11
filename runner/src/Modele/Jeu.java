@@ -13,7 +13,6 @@ public class Jeu {
     }
 
     public Jeu() {
-
     }
 
     private final IntegerProperty score = new SimpleIntegerProperty();

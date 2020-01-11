@@ -68,33 +68,27 @@ public class Personnage {
 
 
     public void sauter(){
-/*
-        if (this.getPositionY() < constantes.getHauteurPiste()){
-            this.setPositionY(this.getPositionY() + this.getVelocite());
-            this.setVelocite(this.getVelocite() + 5);
+        if(!enSaut)
+        {
+            velocite=100;
+            enSaut=true;
         }
-
-        if(this.getPositionY() == constantes.getHauteurPiste()){
-            this.enSaut = false;
-            this.setVelocite(-90);
-        }
-*/
-    velocite=100;
-    enSaut=true;
-        //System.out.println("salam ca  a sauté et mis la velocité a:"+velocite);
-
 
     }
 
-    public void refreshPosition(long dt) {
+    public void refreshPosition(double dt) {
 
-        positionY.setValue(positionY.get()+velocite*dt);
-        velocite=velocite-10;
-      //  System.out.println("position y :"+this.positionY.getValue());
-        if(positionY.getValue()<constantes.getHauteurPiste())
-        {
-            velocite=0;
-            positionY.setValue(constantes.getHauteurPiste());
-        }
+       positionY.setValue(positionY.get()-velocite*dt);
+       if (enSaut) {
+           velocite=velocite-1;
+       }
+
+       if(positionY.getValue()>constantes.getHauteurPiste())
+       {
+           velocite=0;
+           positionY.setValue(constantes.getHauteurPiste());
+           enSaut=false;
+       }
+
     }
 }

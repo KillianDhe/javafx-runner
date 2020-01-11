@@ -50,17 +50,17 @@ public class Partie {
     public void Rafraichir(){
         AnimationTimer gameLoop = new AnimationTimer() {
             long old=0;
-            long dt;
+            double dt;
             @Override
             public void handle(long l) {
-                dt=l-old;
+                dt=(double)(l-old)/100000000;
                 personnage.refreshPosition(dt);
                 for(Obstacle obstacle: listeObstacle){
                     obstacle.move();
                 }
 
                 Random r = new Random();
-                if (r.nextInt(200) == 50) {
+                if (r.nextInt(140) == 50) {
 
                         listeObstacle.add(GenerateurObstacle.genererObstacle(listeObstacle.get(listeObstacle.size()-1)));
 

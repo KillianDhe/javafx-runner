@@ -21,33 +21,31 @@ public class JeuView {
 
     private Pane gamePane = new Pane();
     private PisteView pisteView = new PisteView(500);
-    private PersonnageView persoview = new PersonnageView(new Personnage(), new Image(getClass().getResource("/image/santa.png").toString()));
+    private PersonnageView persoview;
     private List<ObstacleCarreView> listObstacleView=new ArrayList<>();
     private Group root;
 
     public JeuView() {
+        persoview = new PersonnageView(Main.monJeu.getPartie().getPersonnage(),new Image(getClass().getResource("/image/santa.png").toString()));
     }
 
     public Scene getGamePane() {
         root = new Group();
         Scene laScene = new Scene(root);
         root.getChildren().add(pisteView);
-        root.getChildren().add(persoview.getRectangle());
+        root.getChildren().add(persoview);
         laScene.setOnKeyPressed(ke -> {
             KeyCode keyCode = ke.getCode();
             if (keyCode.equals(KeyCode.SPACE)) {
-
-              persoview.getPersonnage().sauter();
-                System.out.println("A key was pressed");
+                Main.monJeu.getPartie().getPersonnage().sauter();
             }
         });
 
         this.initializeListener();
-        this.initializeListener2();
+       // this.initializeListener2();
         Main.monJeu.getPartie().Rafraichir();
 
         Rectangle r=new Rectangle(200,400,50,50);
-        root.getChildren().add(r);
 
         return laScene;
     }
@@ -64,28 +62,10 @@ public class JeuView {
                             root.getChildren().add(obstacleCarreView);
                         });
 
-
                     }
                 }
             }
         });
-
-
-
-    }
-    //Essai debug
-  /*  private void initializeListener2(){
-        Main.monJeu.getPartie().getPersonnage().positionYProperty().addListener(new ChangeListener<Number>() {
-            @Override
-            public void changed(ObservableValue<? extends Number> observableValue, Number number, Number t1) {
-
-                System.out.println( "ancienne"+ number);
-                System.out.println(  "nouvelle "+ t1);
-                System.out.println(persoview.positionY.getValue());
-
-            }
-        });*/
-
     }
 }
 

@@ -11,7 +11,7 @@ import javafx.scene.image.Image;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Rectangle;
 
-public class PersonnageView {
+public class PersonnageView extends Parent {
 
     private Modele.Personnage personnage;
     private Rectangle rectangle;
@@ -26,18 +26,16 @@ public class PersonnageView {
     private static final int positionx=100;
 
     public PersonnageView(Modele.Personnage personnage,Image image) {
-       // positionY.set(constantes.getHauteurPiste()-hauteur);
         positionY.bind(personnage.positionYProperty());
-
         this.personnage = personnage;
         rectangle=new Rectangle();
         rectangle.setFill(new ImagePattern(image));
         rectangle.setX(positionx);
-        rectangle.yProperty().bind(personnage.positionYProperty());
+        rectangle.yProperty().bind(personnage.positionYProperty().add(-hauteur));
 
         rectangle.setHeight(hauteur);
         rectangle.setWidth(largeur);
-        //this.getChildren().add(rectangle);
+        this.getChildren().add(rectangle);
     }
 
     public Rectangle getRectangle() {
