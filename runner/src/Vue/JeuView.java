@@ -73,7 +73,8 @@ public class JeuView {
 
 
     }
-    private void initializeListener2(){
+    //Essai debug
+  /*  private void initializeListener2(){
         Main.monJeu.getPartie().getPersonnage().positionYProperty().addListener(new ChangeListener<Number>() {
             @Override
             public void changed(ObservableValue<? extends Number> observableValue, Number number, Number t1) {
@@ -83,7 +84,7 @@ public class JeuView {
                 System.out.println(persoview.positionY.getValue());
 
             }
-        });
+        });*/
 
     }
 }

@@ -81,7 +81,7 @@ public class Personnage {
 */
     velocite=100;
     enSaut=true;
-        System.out.println("salam ca  a sauté et mis la velocité a:"+velocite);
+        //System.out.println("salam ca  a sauté et mis la velocité a:"+velocite);
 
 
     }
