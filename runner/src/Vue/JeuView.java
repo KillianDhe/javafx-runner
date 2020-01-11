@@ -24,6 +24,7 @@ public class JeuView {
     private PersonnageView persoview;
     private List<ObstacleCarreView> listObstacleView=new ArrayList<>();
     private Group root;
+    Image giftImage = new Image(getClass().getResource("/image/cadeau.jpg").toString());
 
     public JeuView() {
         persoview = new PersonnageView(Main.monJeu.getPartie().getPersonnage(),new Image(getClass().getResource("/image/santa.png").toString()));
@@ -54,16 +55,28 @@ public class JeuView {
         Main.monJeu.getPartie().getListeObstacle().addListener(new ListChangeListener<Obstacle>() {
             @Override
             public void onChanged(Change<? extends Obstacle> change) {
+                List<ObstacleCarreView> listObstacleViewToDelete = new ArrayList<>();
+                List<ObstacleCarreView> listObstacleCarreViewToAdd= new ArrayList<>();
                 while (change.next()) {
                     if (change.wasAdded()) {
                         change.getList().forEach(obstacleTmp -> {
-                            ObstacleCarreView obstacleCarreView = new ObstacleCarreView((ObstacleCarre) obstacleTmp, new Image(getClass().getResource("/image/cadeau.jpg").toString()));
-                            listObstacleView.add(obstacleCarreView);
-                            root.getChildren().add(obstacleCarreView);
+                            ObstacleCarreView obstacleCarreView = new ObstacleCarreView((ObstacleCarre) obstacleTmp,giftImage );
+                            listObstacleCarreViewToAdd.add(obstacleCarreView);
                         });
-
+                    }
+                    if(change.wasRemoved()){
+                        change.getList().forEach(obstacleTmp -> {
+                            ObstacleCarreView obstacleViewToRemove = listObstacleView.stream().filter(obstacleViewTmp -> {
+                               return obstacleViewTmp.getObstacleCarre() == obstacleTmp;
+                            }).findFirst().orElse(null);
+                            listObstacleViewToDelete.add(obstacleViewToRemove);
+                        });
                     }
                 }
+                listObstacleView.addAll(listObstacleCarreViewToAdd);
+                listObstacleView.removeAll(listObstacleViewToDelete);
+                root.getChildren().remove(listObstacleViewToDelete);
+                root.getChildren().addAll(listObstacleCarreViewToAdd);
             }
         });
     }

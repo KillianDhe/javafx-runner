@@ -11,7 +11,12 @@ public class GenerateurObstacle {
     private ObservableList<ObstacleCarreView> listeecarreView;
 
 
-    public static Obstacle genererObstacle(Obstacle lastObstacle){
+    public static Obstacle genererObstacle(List<Obstacle> listObstacle){
+
+        Obstacle lastObstacle =null;
+        if (listObstacle != null && !listObstacle.isEmpty()) {
+            lastObstacle = listObstacle.get(listObstacle.size()-1);
+        }
 
         int cote= (int)((Math.random()*(constantes.getLongueurObstacle()-20)+1)+constantes.getLongueurObstacle());
         int y=constantes.getHauteurPiste()-cote;
@@ -20,9 +25,9 @@ public class GenerateurObstacle {
         if (lastObstacle == null) {
             obstacle = new ObstacleCarre(900,y,cote);
         }else {
-            int xmin=lastObstacle.getPositionX()+constantes.getLargeurPersonnage()*2;
-            int xmax=xmin+200;
-            obstacle = new ObstacleCarre((int)(Math.random()*(xmax-xmin + 1))+xmin,y,cote);
+            double xmin=lastObstacle.getPositionX()+constantes.getLargeurPersonnage()*2;
+            double xmax=xmin+200;
+            obstacle = new ObstacleCarre(Math.random()*(xmax-xmin + 1)+xmin,y,cote);
         }
 
         return obstacle;

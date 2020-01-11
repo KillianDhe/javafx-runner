@@ -80,15 +80,14 @@ public class Personnage {
 
        positionY.setValue(positionY.get()-velocite*dt);
        if (enSaut) {
-           velocite=velocite-1;
+           velocite=velocite-10*dt;
        }
-
        if(positionY.getValue()>constantes.getHauteurPiste())
        {
            velocite=0;
            positionY.setValue(constantes.getHauteurPiste());
            enSaut=false;
        }
-
     }
+
 }

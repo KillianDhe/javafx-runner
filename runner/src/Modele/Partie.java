@@ -56,20 +56,29 @@ public class Partie {
                 dt=(double)(l-old)/100000000;
                 personnage.refreshPosition(dt);
                 for(Obstacle obstacle: listeObstacle){
-                    obstacle.move();
+                    obstacle.move(dt);
                 }
+                cleanObstacleList();
 
                 Random r = new Random();
                 if (r.nextInt(140) == 50) {
-
-                        listeObstacle.add(GenerateurObstacle.genererObstacle(listeObstacle.get(listeObstacle.size()-1)));
-
-                    }
-
+                    listeObstacle.add(GenerateurObstacle.genererObstacle(listeObstacle));
+                }
                 old=l;
             }
-
         };
         gameLoop.start();
+    }
+
+    private void cleanObstacleList() {
+        List<Obstacle> listeObstacleDelete = new ArrayList<>();
+        listeObstacle.forEach(obstacleTmp ->   {
+            if(!obstacleTmp.isOnScreen){
+                listeObstacleDelete.add(obstacleTmp);
+            }
+        });
+        listeObstacle.removeAll(listeObstacleDelete);
+        System.out.println("Nb d'obstacles : " + listeObstacle.size());
+        System.out.println("Nb obstacle on Screen : " +listeObstacle.stream().filter(obstacle -> {return obstacle.isOnScreen;}).count());
     }
 }

@@ -7,17 +7,17 @@ import javafx.beans.property.SimpleIntegerProperty;
 
 public abstract class  Obstacle {
 
-
-    private final IntegerProperty positionX = new SimpleIntegerProperty();
-    public Integer getPositionX() {return positionX.get();}
-    public IntegerProperty positionXProperty() {return positionX;}
+    public boolean isOnScreen = true ;
+    private final SimpleDoubleProperty positionX = new SimpleDoubleProperty();
+    public double getPositionX() {return positionX.get();}
+    public DoubleProperty positionXProperty() {return positionX;}
     public void setPositionX(Integer positionX) {this.positionX.set(positionX);}
 
     private int positionY;
     private int largeur;
     private int hauteur;
 
-    public Obstacle(int positionX, int positionY,int largeur,int hauteur) {
+    public Obstacle(double positionX, int positionY,int largeur,int hauteur) {
         this.positionX.set(positionX);
         this.positionY = positionY;
         this.hauteur=hauteur;
@@ -34,7 +34,7 @@ public abstract class  Obstacle {
                 '}';
     }
 
-    public abstract void move();
+    public abstract void move(double dt);
 
 
     public int getPositionY() {
