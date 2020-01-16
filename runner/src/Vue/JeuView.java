@@ -1,8 +1,10 @@
 package Vue;
 
 import Modele.*;
+import javafx.animation.AnimationTimer;
 import javafx.beans.binding.Bindings;
 import javafx.collections.ListChangeListener;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Group;
 import javafx.scene.Parent;
@@ -13,6 +15,7 @@ import javafx.scene.image.Image;
 import javafx.scene.input.KeyCode;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.ImagePattern;
+import javafx.scene.shape.Rectangle;
 import javafx.scene.shape.Shape;
 import javafx.stage.Stage;
 import sample.Main;
@@ -20,6 +23,7 @@ import sample.Main;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 public class JeuView {
 
@@ -28,7 +32,7 @@ public class JeuView {
     private PersonnageView persoview;
     private List<ObstacleCarreView> listObstacleView=new ArrayList<>();
     private Group root;
-    Image giftImage = new Image(getClass().getResource("/image/cadeau.jpg").toString());
+    Image giftImage = new Image(getClass().getResource("/image/cadeau1.png").toString());
     private Label score;
     private Label scoreValue;
     private Button pause=new Button("pause (esc)"){
@@ -45,7 +49,7 @@ public class JeuView {
         scoreValue.setLayoutX(260);
         scoreValue.setLayoutY(100);
         scoreValue.textProperty().bind(Bindings.convert(Main.monJeu.getPartie().scoreProperty()));
-       pause.setOnAction((event)->clicSurPause());
+       pause.setOnAction((event)->clicSurPause(event));
     }
 
 
@@ -65,47 +69,35 @@ public class JeuView {
                 Main.monJeu.getPartie().getPersonnage().sauter();
             }
             if (keyCode.equals(KeyCode.ESCAPE)) {
-                clicSurPause();
+                pause.fire();
             }
         });
 
 
         this.initializeListener();
-        Main.monJeu.getPartie().rafraichir(persoview.getRectangle(),listObstacleView);
-        checkShapeIntersection(persoview.getRectangle());
-
+        this.rafraichir();
 
         return laScene;
     }
 
-    private void checkShapeIntersection(Shape block) {
-        boolean collisionDetected = false;
-        for (ObstacleCarreView static_bloc : listObstacleView) {
-            if (static_bloc.getRectangle() != block) {
-                Shape intersect = Shape.intersect(block, static_bloc.getRectangle());
-                if (intersect.getBoundsInLocal().getWidth() != -1) {
-                    collisionDetected = true;
-                }
-            }
-        }
 
-        if (collisionDetected) {
-            System.out.println("-----------------------------PUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU-----------------------------------------");
-        }
-    }
+    private void clicSurPause(ActionEvent event){
 
-
-    private void clicSurPause(){
+        this.arreter();
+        Main.monJeu.getPartie().getListeObstacle().clear();
+        listObstacleView.clear();
+        Stage stage =(Stage)((Button)event.getSource()).getScene().getWindow();
         Parent root = null;
         try {
             root = FXMLLoader.load(getClass().getResource("/fxml/pause.fxml"));
         } catch (IOException e) {
             e.printStackTrace();
         }
+        assert root != null;
         Scene scene = new Scene(root);
-        Stage stage =new Stage();
         stage.setScene(scene);
         stage.show();
+
     }
 
 
@@ -135,21 +127,71 @@ public class JeuView {
                 listObstacleView.removeAll(listObstacleViewToDelete);
                 root.getChildren().remove(listObstacleViewToDelete);
                 root.getChildren().addAll(listObstacleCarreViewToAdd);
+
+
             }
         });
 
+    }
 
-   /*     void checkCollision(StackPane pane, final Rectangle rect1, Rectangle rect2){
 
-            rect2.boundsInParentProperty().addListener(new ChangeListener<Bounds>() {
-                @Override
-                public void changed(ObservableValue<? extends Bounds> arg0,Bounds oldValue, Bounds newValue) {
-                    if(rect1.intersects(newValue)){
-                        System.out.println("Collide ============= Collide");
+        AnimationTimer gameLoop = new AnimationTimer() {
+            long old = 0;
+            double dt;
+
+            @Override
+            public void handle(long l) {
+                dt = (double) (l - old) / 100000000;
+               // Main.monJeu.getPartie().setScore((score.getValue() + 1));
+                Main.monJeu.getPartie().getPersonnage().refreshPosition(dt);
+                for (Obstacle obstacle : Main.monJeu.getPartie().getListeObstacle()) {
+                    obstacle.move(dt);
+                }
+                for (ObstacleCarreView obstacle : listObstacleView) {
+                    if (obstacle.getRectangle() != persoview.getRectangle()) {
+                        Shape intersect = Shape.intersect(persoview.getRectangle(), obstacle.getRectangle());
+                        if (intersect.getBoundsInLocal().getWidth() != -1) {
+                            gameLoop.stop();
+
+                            Stage stage = (Stage) pause.getScene().getWindow();
+                            Parent root = null;
+                            try {
+                                root = FXMLLoader.load(getClass().getResource("/fxml/Menu.fxml"));
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            }
+                            assert root != null;
+                            Scene scene = new Scene(root);
+                            stage.setScene(scene);
+                            stage.show();
+
+                        }
                     }
                 }
-            });*/
+
+                Main.monJeu.getPartie().cleanObstacleList();
+
+                Random r = new Random();
+                if (r.nextInt(140) == 50) {
+                    Main.monJeu.getPartie().getListeObstacle().add(GenerateurObstacle.genererObstacle(Main.monJeu.getPartie().getListeObstacle()));
+                }
+
+
+                old = l;
+            }
+
+        };
+
+    private void  rafraichir(){
+        gameLoop.start();
     }
+
+    private void arreter()
+    {
+        gameLoop.stop();
+    }
+
+
 }
 
 

@@ -30,9 +30,6 @@ public class Partie {
     public void setScore(Integer score) {this.score.set(score);}
 
 
-    //private GenerateurObstacle generateurObstacle=new GenerateurObstacle();
-
-
     public Partie(Personnage p) {
         listeObstacle.add(GenerateurObstacle.genererObstacle(null));
         this.personnage=p;
@@ -60,46 +57,6 @@ public class Partie {
     }
 
 
-    public void rafraichir(Rectangle rectangle, List<ObstacleCarreView> listObstacleView) {
-        AnimationTimer gameLoop = new AnimationTimer() {
-            long old = 0;
-            double dt;
-
-            @Override
-            public void handle(long l) {
-                dt = (double) (l - old) / 100000000;
-                score.set((score.getValue() + 1));
-                personnage.refreshPosition(dt);
-                for (Obstacle obstacle : listeObstacle) {
-                    obstacle.move(dt);
-                }
-                cleanObstacleList();
-
-                Random r = new Random();
-                if (r.nextInt(140) == 50) {
-                    listeObstacle.add(GenerateurObstacle.genererObstacle(listeObstacle));
-                }
-
-                boolean collisionDetected = false;
-                for (ObstacleCarreView static_bloc : listObstacleView) {
-                    if (static_bloc.getRectangle() != rectangle) {
-                        Shape intersect = Shape.intersect(rectangle, static_bloc.getRectangle());
-                        if (intersect.getBoundsInLocal().getWidth() != -1) {
-                            collisionDetected = true;
-                        }
-                    }
-                }
-
-                if (collisionDetected) {
-                    System.out.println("-----------------------------CCCCCCCCCCCCOOOOOOOOOOOOOOLLLLLLLLLLISSSSSSSSSSSSSSSSSSSIIIIIIIIIIIIIIIOOOOOOOOOOOOOOOONNNNNNNNNNNN-----------------------------------------");
-                }
-
-                old = l;
-            }
-
-        };
-        gameLoop.start();
-    }
 
   /*  public void Reprendre(){
 
@@ -111,7 +68,7 @@ public class Partie {
         gameLoop.stop();
     }*/
 
-    private void cleanObstacleList() {
+    public void cleanObstacleList() {
         List<Obstacle> listeObstacleDelete = new ArrayList<>();
         listeObstacle.forEach(obstacleTmp ->   {
             if(!obstacleTmp.isOnScreen){
@@ -125,4 +82,6 @@ public class Partie {
 */
 
     }
+
+
 }

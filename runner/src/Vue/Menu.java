@@ -7,10 +7,7 @@ import Modele.Personnage;
 import javafx.beans.binding.Bindings;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Label;
-import javafx.scene.control.ListCell;
-import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.stage.Stage;
 import sample.Main;
 
@@ -34,13 +31,13 @@ public class Menu {
     @FXML
     void clicSurJouer(ActionEvent event) {
 
-        JeuView leJeu = new JeuView();
-        Stage stage =new Stage();
-        stage.setTitle("Jeu");
+
+        Stage stage =(Stage)((Button)event.getSource()).getScene().getWindow();
+        stage.setTitle("Runner");
         stage.setWidth(1100);
         stage.setHeight(700);
         stage.setResizable(true);
-        stage.setScene(leJeu.getGamePane());
+        stage.setScene(Main.leJeu.getGamePane());
         stage.show();
 
     }

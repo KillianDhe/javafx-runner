@@ -19,6 +19,7 @@ public class Main extends Application {
 
 
     public static final Jeu monJeu = new Jeu(new Partie(new Personnage()),122);
+    public static final JeuView leJeu = new JeuView();
 
     @Override
     public void start(Stage primaryStage) throws Exception{
@@ -28,6 +29,7 @@ public class Main extends Application {
             Scene scene = new Scene(root);
             primaryStage.setScene(scene);
             primaryStage.show();
+
             //j1.getPartie().GeneretEtAjouterObstacle();
 
             //System.out.println(monJeu.getPartie().getListeObstacle());
