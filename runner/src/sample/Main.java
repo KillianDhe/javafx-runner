@@ -18,7 +18,7 @@ import javafx.stage.Stage;
 public class Main extends Application {
 
 
-    public static final Jeu monJeu = new Jeu(new Partie(new Personnage()),122);
+    public static final Jeu monJeu = new Jeu(new Partie(new Personnage()));
     public static final JeuView leJeu = new JeuView();
 
     @Override

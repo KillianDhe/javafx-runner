@@ -23,7 +23,7 @@ public class Menu {
 
     public void initialize() {
 
-        meilleurScore.textProperty().bind(Bindings.convert(Main.monJeu.meilleurScoreProperty()));
+        meilleurScore.textProperty().bind(Bindings.convert(Main.monJeu.getPartie().meilleurScoreProperty()));
         dernierScore.textProperty().bind(Bindings.convert(Main.monJeu.getPartie().scoreProperty()));
 
     }

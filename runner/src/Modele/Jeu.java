@@ -13,13 +13,9 @@ public class Jeu {
     }
 
     public Jeu() {
-        this.meilleurScore.set(0);
     }
 
-    private final IntegerProperty meilleurScore = new SimpleIntegerProperty();
-        public Integer getMeilleurScore() {return meilleurScore.get();}
-        public IntegerProperty meilleurScoreProperty() {return meilleurScore;}
-        public void setMeilleurScore(Integer meilleurScore) {this.meilleurScore.set(meilleurScore);}
+
 
 /*
     private final IntegerProperty score = new SimpleIntegerProperty();
@@ -29,8 +25,7 @@ public class Jeu {
 */
 
 
-    public Jeu(Partie partie , int meilleurScore) {
-            this.meilleurScore.set(meilleurScore);
+    public Jeu(Partie partie) {
             this.partie=partie;
     }
 

@@ -9,6 +9,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Group;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
@@ -73,7 +74,7 @@ public class JeuView {
             }
         });
 
-
+        Main.monJeu.getPartie().setScore(0);
         this.initializeListener();
         this.rafraichir();
 
@@ -98,6 +99,76 @@ public class JeuView {
         stage.setScene(scene);
         stage.show();
 
+    }
+
+    AnimationTimer gameLoop = new AnimationTimer() {
+        long old = 0;
+        double dt;
+
+        @Override
+        public void handle(long l) {
+            dt = (double) (l - old) / 100000000;
+            Main.monJeu.getPartie().getPersonnage().refreshPosition(dt);
+            for (Obstacle obstacle : Main.monJeu.getPartie().getListeObstacle()) {
+                obstacle.move(dt);
+            }
+            for (ObstacleCarreView obstacle : listObstacleView) {
+                if (obstacle.getRectangle() != persoview.getRectangle()) {
+                    Shape intersect = Shape.intersect(persoview.getRectangle(), obstacle.getRectangle());
+                    if (intersect.getBoundsInLocal().getWidth() != -1) {
+                        perdre();
+                       return;
+
+                    }
+                }
+            }
+
+            Main.monJeu.getPartie().cleanObstacleList();
+
+            Random r = new Random();
+            if (r.nextInt(100) == 50) {
+                Main.monJeu.getPartie().getListeObstacle().add(GenerateurObstacle.genererObstacle(Main.monJeu.getPartie().getListeObstacle()));
+            }
+
+
+            old = l;
+        }
+
+    };
+
+    private void perdre() {
+
+
+        gameLoop.stop();
+        Main.monJeu.getPartie().perdre();
+        listObstacleView.clear();
+        Alert al=new Alert(Alert.AlertType.WARNING,"T NUL");
+        al.show();
+
+
+        al.setOnHidden(evt -> {
+            Stage stage = (Stage) pause.getScene().getWindow();
+            Parent root = null;
+            try {
+                root = FXMLLoader.load(getClass().getResource("/fxml/Menu.fxml"));
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            assert root != null;
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
+        });
+
+    }
+
+    private void  rafraichir(){
+        gameLoop.start();
+    }
+
+    private void arreter()
+    {
+        gameLoop.stop();
     }
 
 
@@ -135,61 +206,6 @@ public class JeuView {
     }
 
 
-        AnimationTimer gameLoop = new AnimationTimer() {
-            long old = 0;
-            double dt;
-
-            @Override
-            public void handle(long l) {
-                dt = (double) (l - old) / 100000000;
-               // Main.monJeu.getPartie().setScore((score.getValue() + 1));
-                Main.monJeu.getPartie().getPersonnage().refreshPosition(dt);
-                for (Obstacle obstacle : Main.monJeu.getPartie().getListeObstacle()) {
-                    obstacle.move(dt);
-                }
-                for (ObstacleCarreView obstacle : listObstacleView) {
-                    if (obstacle.getRectangle() != persoview.getRectangle()) {
-                        Shape intersect = Shape.intersect(persoview.getRectangle(), obstacle.getRectangle());
-                        if (intersect.getBoundsInLocal().getWidth() != -1) {
-                            gameLoop.stop();
-
-                            Stage stage = (Stage) pause.getScene().getWindow();
-                            Parent root = null;
-                            try {
-                                root = FXMLLoader.load(getClass().getResource("/fxml/Menu.fxml"));
-                            } catch (IOException e) {
-                                e.printStackTrace();
-                            }
-                            assert root != null;
-                            Scene scene = new Scene(root);
-                            stage.setScene(scene);
-                            stage.show();
-
-                        }
-                    }
-                }
-
-                Main.monJeu.getPartie().cleanObstacleList();
-
-                Random r = new Random();
-                if (r.nextInt(140) == 50) {
-                    Main.monJeu.getPartie().getListeObstacle().add(GenerateurObstacle.genererObstacle(Main.monJeu.getPartie().getListeObstacle()));
-                }
-
-
-                old = l;
-            }
-
-        };
-
-    private void  rafraichir(){
-        gameLoop.start();
-    }
-
-    private void arreter()
-    {
-        gameLoop.stop();
-    }
 
 
 }

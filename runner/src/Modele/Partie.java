@@ -4,7 +4,9 @@ import Vue.ObstacleCarreView;
 import javafx.animation.Animation;
 import javafx.animation.AnimationTimer;
 import javafx.beans.Observable;
+import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -24,16 +26,22 @@ public class Partie {
 
     private ObservableList<Obstacle> listeObstacle= FXCollections.observableArrayList();
     private Personnage personnage;
+
     private final IntegerProperty score = new SimpleIntegerProperty();
     public Integer getScore() {return score.get();}
     public IntegerProperty scoreProperty() {return score;}
     public void setScore(Integer score) {this.score.set(score);}
 
+    private final IntegerProperty meilleurScore = new SimpleIntegerProperty();
+    public Integer getMeilleurScore() {return meilleurScore.get();}
+    public IntegerProperty meilleurScoreProperty() {return meilleurScore;}
+    public void setMeilleurScore(Integer score) {this.meilleurScore.set(score);}
 
     public Partie(Personnage p) {
         listeObstacle.add(GenerateurObstacle.genererObstacle(null));
         this.personnage=p;
         score.set(0);
+        meilleurScore.set(0);
     }
 
     public ObservableList<Obstacle> getListeObstacle() {
@@ -48,6 +56,30 @@ public class Partie {
         this.personnage = personnage;
     }
 
+    public void cleanObstacleList() {
+        List<Obstacle> listeObstacleDelete = new ArrayList<>();
+        listeObstacle.forEach(obstacleTmp ->   {
+            if(!obstacleTmp.isOnScreen){
+                listeObstacleDelete.add(obstacleTmp);
+                incrementerScore();
+            }
+        });
+        listeObstacle.removeAll(listeObstacleDelete);
+    }
+
+    public void incrementerScore()
+    {
+        setScore(getScore()+1);
+        if(getScore()>getMeilleurScore())
+            setMeilleurScore(getScore());
+    }
+
+    public void perdre()
+    {
+        listeObstacle.clear();
+      /*  setScore(0);*/
+    }
+
     @Override
     public String toString() {
         return "Piste{" +
@@ -55,33 +87,4 @@ public class Partie {
                 ", personnage=" + personnage +
                 '}';
     }
-
-
-
-  /*  public void Reprendre(){
-
-        gameLoop.start();
-    }
-
-    public void arreterRafraichir(){
-
-        gameLoop.stop();
-    }*/
-
-    public void cleanObstacleList() {
-        List<Obstacle> listeObstacleDelete = new ArrayList<>();
-        listeObstacle.forEach(obstacleTmp ->   {
-            if(!obstacleTmp.isOnScreen){
-                listeObstacleDelete.add(obstacleTmp);
-            }
-        });
-        listeObstacle.removeAll(listeObstacleDelete);
-       /* System.out.println("Nb d'obstacles : " + listeObstacle.size());
-        System.out.println("Nb obstacle on Screen : " +listeObstacle.stream().filter(obstacle -> {return obstacle.isOnScreen;}).count());
-
-*/
-
-    }
-
-
 }
