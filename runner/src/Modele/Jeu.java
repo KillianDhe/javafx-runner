@@ -16,15 +16,6 @@ public class Jeu {
     }
 
 
-
-/*
-    private final IntegerProperty score = new SimpleIntegerProperty();
-    public Integer getScore() {return score.get();}
-    public IntegerProperty scoreProperty() {return score;}
-    public void setScore(Integer score) {this.score.set(score);}
-*/
-
-
     public Jeu(Partie partie) {
             this.partie=partie;
     }

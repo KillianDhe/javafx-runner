@@ -1,9 +1,6 @@
 package sample;
 
-import Modele.Jeu;
-import Modele.ObstacleCarre;
-import Modele.Partie;
-import Modele.Personnage;
+import Modele.*;
 import Vue.JeuView;
 import Vue.ObstacleCarreView;
 import Vue.PersonnageView;
@@ -18,22 +15,22 @@ import javafx.stage.Stage;
 public class Main extends Application {
 
 
-    public static final Jeu monJeu = new Jeu(new Partie(new Personnage()));
-    public static final JeuView leJeu = new JeuView();
+    public static  Manager monJeu ;
+    public static JeuView leJeu;
 
     @Override
     public void start(Stage primaryStage) throws Exception{
 
-            System.out.println("ca marche");
+
+            SauvegardeBin sauvegardeBin=new SauvegardeBin();
+            monJeu=new Manager(sauvegardeBin);
+            monJeu.charger();
+            leJeu=new JeuView();
+
             Parent root = FXMLLoader.load(getClass().getResource("/fxml/Menu.fxml"));
             Scene scene = new Scene(root);
             primaryStage.setScene(scene);
             primaryStage.show();
-
-            //j1.getPartie().GeneretEtAjouterObstacle();
-
-            //System.out.println(monJeu.getPartie().getListeObstacle());
-
     }
 
 

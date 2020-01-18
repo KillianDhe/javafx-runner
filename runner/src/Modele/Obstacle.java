@@ -17,7 +17,8 @@ public abstract class  Obstacle {
     private int largeur;
     private int hauteur;
 
-    public Obstacle(double positionX, int positionY,int largeur,int hauteur) {
+
+    public Obstacle(double positionX, int positionY, int largeur, int hauteur) {
         this.positionX.set(positionX);
         this.positionY = positionY;
         this.hauteur=hauteur;

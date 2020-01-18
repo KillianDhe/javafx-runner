@@ -18,14 +18,18 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.shape.Shape;
 
+import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.Random;
 
-public class Partie {
+    public class Partie implements Externalizable {
 
-    private ObservableList<Obstacle> listeObstacle= FXCollections.observableArrayList();
-    private Personnage personnage;
+        private static final long serialVersionUID = 4683561297105055078L;
+
+    private  ObservableList<Obstacle> listeObstacle= FXCollections.observableArrayList();
+    private  Personnage personnage;
 
     private final IntegerProperty score = new SimpleIntegerProperty();
     public Integer getScore() {return score.get();}
@@ -37,12 +41,19 @@ public class Partie {
     public IntegerProperty meilleurScoreProperty() {return meilleurScore;}
     public void setMeilleurScore(Integer score) {this.meilleurScore.set(score);}
 
-    public Partie(Personnage p) {
+        public Partie() {
+        personnage=new Personnage();
+            score.set(0);
+            meilleurScore.set(0);
+            listeObstacle.add(GenerateurObstacle.genererObstacle(null));
+        }
+
+
+/*        public Partie(Personnage p) {
         listeObstacle.add(GenerateurObstacle.genererObstacle(null));
         this.personnage=p;
-        score.set(0);
-        meilleurScore.set(0);
-    }
+
+    }*/
 
     public ObservableList<Obstacle> getListeObstacle() {
         return listeObstacle;
@@ -80,11 +91,32 @@ public class Partie {
       /*  setScore(0);*/
     }
 
-    @Override
-    public String toString() {
-        return "Piste{" +
-                ", listeGroupeObstacle=" + listeObstacle +
-                ", personnage=" + personnage +
-                '}';
+    public void rejouer()
+    {
+        setScore(0);
     }
-}
+
+
+        @Override
+        public void writeExternal(ObjectOutput objectOutput) throws IOException {
+            objectOutput.writeInt(score.get());
+            objectOutput.writeInt(meilleurScore.get());
+
+        }
+
+        @Override
+        public void readExternal(ObjectInput objectInput) throws IOException, ClassNotFoundException {
+            score.set(objectInput.readInt());
+            meilleurScore.set(objectInput.readInt());
+    }
+
+        @Override
+        public String toString() {
+            return "Partie{" +
+                    "listeObstacle=" + listeObstacle +
+                    ", personnage=" + personnage +
+                    ", score=" + score +
+                    ", meilleurScore=" + meilleurScore +
+                    '}';
+        }
+    }

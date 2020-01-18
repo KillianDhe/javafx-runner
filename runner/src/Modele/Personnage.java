@@ -21,6 +21,8 @@ public class Personnage {
     private static final int hauteurSaut=constantes.getHauteurSaut();
     private double velocite = 0;
 
+
+
     public Personnage() {
         this.setEnSaut(false);
         this.setEnBas(true);

@@ -67,14 +67,14 @@ public class JeuView {
         laScene.setOnKeyPressed(ke -> {
             KeyCode keyCode = ke.getCode();
             if (keyCode.equals(KeyCode.SPACE)) {
-                Main.monJeu.getPartie().getPersonnage().sauter();
+                Main.monJeu.sauter();
             }
             if (keyCode.equals(KeyCode.ESCAPE)) {
                 pause.fire();
             }
         });
 
-        Main.monJeu.getPartie().setScore(0);
+        Main.monJeu.rejouer();
         this.initializeListener();
         this.rafraichir();
 
@@ -108,7 +108,7 @@ public class JeuView {
         @Override
         public void handle(long l) {
             dt = (double) (l - old) / 100000000;
-            Main.monJeu.getPartie().getPersonnage().refreshPosition(dt);
+            Main.monJeu.refreshPosition(dt);
             for (Obstacle obstacle : Main.monJeu.getPartie().getListeObstacle()) {
                 obstacle.move(dt);
             }
@@ -123,10 +123,10 @@ public class JeuView {
                 }
             }
 
-            Main.monJeu.getPartie().cleanObstacleList();
+            Main.monJeu.cleanObstacleList();
 
             Random r = new Random();
-            if (r.nextInt(100) == 50) {
+            if (r.nextInt(120) == 50) {
                 Main.monJeu.getPartie().getListeObstacle().add(GenerateurObstacle.genererObstacle(Main.monJeu.getPartie().getListeObstacle()));
             }
 
@@ -140,7 +140,7 @@ public class JeuView {
 
 
         gameLoop.stop();
-        Main.monJeu.getPartie().perdre();
+        Main.monJeu.perdre();
         listObstacleView.clear();
         Alert al=new Alert(Alert.AlertType.WARNING,"T NUL");
         al.show();
@@ -160,6 +160,7 @@ public class JeuView {
             stage.show();
         });
 
+        Main.monJeu.sauvegarder();
     }
 
     private void  rafraichir(){
