@@ -1,0 +1,13 @@
+.button {
+    -fx-background-color: #D53210;
+    -fx-text-fill: white;
+}
+
+#titre{
+    -fx-alignment: center;
+    -fx-font-size: 60;
+    -fx-text-fill: #D53210;
+}
+.root{
+    -fx-background-image: url("background.jpg");
+}

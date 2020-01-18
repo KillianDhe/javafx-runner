@@ -1,17 +1,12 @@
 package Vue;
 
 
-import Modele.Jeu;
-import Modele.Partie;
-import Modele.Personnage;
 import javafx.beans.binding.Bindings;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
 import sample.Main;
-
-import java.net.URISyntaxException;
 
 public class Menu {
 
@@ -21,6 +16,9 @@ public class Menu {
     @FXML
     private Label dernierScore;
 
+    /**
+     * bind les labels score et meilleureScore a ceux de Partie
+     */
     public void initialize() {
 
         meilleurScore.textProperty().bind(Bindings.convert(Main.monJeu.getPartie().meilleurScoreProperty()));
@@ -28,20 +26,28 @@ public class Menu {
 
     }
 
+    /**
+     * set la scene de jeuView a la scene actuelle
+     * appelle la methode rejouer de partie
+     * @param event
+     */
     @FXML
     void clicSurJouer(ActionEvent event) {
-
-
         Stage stage =(Stage)((Button)event.getSource()).getScene().getWindow();
         stage.setTitle("Runner");
         stage.setWidth(1100);
         stage.setHeight(700);
-        stage.setResizable(true);
+        stage.setResizable(false);
         stage.setScene(Main.leJeu.getGamePane());
         stage.show();
+        Main.monJeu.rejouer();
 
     }
 
+    /**
+     * quitte l'application
+     * @param actionEvent
+     */
     public void clicSurQuitter(ActionEvent actionEvent) {
         try {
             System.exit(0);

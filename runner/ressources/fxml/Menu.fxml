@@ -6,10 +6,10 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="700.0" prefWidth="1100.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Vue.Menu">
+<AnchorPane prefHeight="700.0" prefWidth="1100.0"  stylesheets="@style.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Vue.Menu">
     <children>
         <Button alignment="CENTER" defaultButton="true" layoutX="458.0" layoutY="344.0" mnemonicParsing="false" onAction="#clicSurJouer" prefHeight="94.0" prefWidth="185.0" text="Jouer !" />
-        <Label layoutX="420.0" layoutY="59.0" prefHeight="139.0" prefWidth="279.0" text="RUNNER" textAlignment="RIGHT" textFill="#c61636" textOverrun="CLIP">
+        <Label fx:id="titre" layoutX="420.0" layoutY="59.0" prefHeight="139.0" prefWidth="279.0" text="RUNNER" textAlignment="RIGHT" textFill="#c61636" textOverrun="CLIP">
             <font>
                 <Font name="Noto Sans Tagalog Regular" size="55.0" />
             </font>

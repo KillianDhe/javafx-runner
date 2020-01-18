@@ -4,8 +4,15 @@ import java.io.*;
 
 public class SauvegardeBin implements ISauvegarder {
 
+    /**
+     * le fichier dans lequel on sauvegarde
+     */
     private String fichier = "partie.ser";
 
+    /**
+     * charge une partie depuis le fichier
+     * @return la partie deserialisée
+     */
     @Override
     public Partie charger() {
         Partie partie = null;
@@ -26,8 +33,12 @@ public class SauvegardeBin implements ISauvegarder {
 
     }
 
-    @Override
 
+    /**
+     * serialise une partie
+     * @param partie la partie a serialiser
+     */
+    @Override
     public void sauvegarder(Partie partie) {
 
         try {
