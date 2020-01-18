@@ -12993,7 +12993,8 @@
 								"$ref": "AAAAAAFvuZmyqbR9X8w="
 							},
 							"name": "persistance",
-							"visibility": "private"
+							"visibility": "private",
+							"type": ""
 						}
 					],
 					"operations": [
@@ -13053,7 +13054,8 @@
 									"_parent": {
 										"$ref": "AAAAAAFvuZ0PSrh6uLk="
 									},
-									"name": "persistance"
+									"name": "persistance",
+									"type": ""
 								}
 							]
 						}
