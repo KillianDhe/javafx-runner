@@ -111,7 +111,6 @@ public class JeuView {
 
         this.initializeListener();
         this.rafraichir();
-
         return laScene;
     }
 
