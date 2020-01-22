@@ -4,6 +4,7 @@ import Vue.ObstacleCarreView;
 import javafx.collections.ObservableList;
 
 import java.util.List;
+import java.util.Random;
 
 public class GenerateurObstacle {
 
@@ -14,6 +15,8 @@ public class GenerateurObstacle {
      * @return l'obstacle generé
      */
     public static Obstacle genererObstacle(List<Obstacle> listObstacle) {
+        Random rd=new Random();
+        boolean bool = rd.nextBoolean();
 
         Obstacle lastObstacle = null;
         if (listObstacle != null && !listObstacle.isEmpty()) {
@@ -25,11 +28,15 @@ public class GenerateurObstacle {
 
         Obstacle obstacle;
         if (lastObstacle == null) {
-            obstacle = new ObstacleCarre(900, y, cote);
+            if(bool)
+              obstacle = new ObstacleCarre(900, y, cote);
+            else obstacle=new ObstacleRond(900,y,cote/2);
         } else {
             double xmin = lastObstacle.getPositionX() + Constantes.getLargeurPersonnage() * 6;
             double xmax = xmin + 300;
-            obstacle = new ObstacleCarre(Math.random() * (xmax - xmin + 1) + xmin, y, cote);
+            if(bool)
+                obstacle = new ObstacleCarre(Math.random() * (xmax - xmin + 1) + xmin, y, cote);
+            else obstacle=new ObstacleRond(Math.random() * (xmax - xmin + 1) + xmin, y, cote/2);
         }
 
         return obstacle;

@@ -40,12 +40,15 @@ public class JeuView {
      * la liste contenant les obstacles qui vont s'afficher
      */
     private List<ObstacleCarreView> listObstacleView=new ArrayList<>();
+    private List<ObstacleRondView> listObstacleRondView=new ArrayList<>();
 
     private Group root;
     /**
      * l'image d'un obstacle
      */
     Image giftImage = new Image(getClass().getResource("/image/cadeau1.png").toString());
+    Image greenImage = new Image(getClass().getResource("/image/vert.png").toString());
+
 
     /**
      * le label score que l'on affiche dans la vue
@@ -158,6 +161,18 @@ public class JeuView {
 
                     }
                 }
+
+            }
+
+            for (ObstacleRondView obstacle : listObstacleRondView) {
+                    Shape intersect = Shape.intersect(persoview.getRectangle(), obstacle.getCircle());
+                    if (intersect.getBoundsInLocal().getWidth() != -1) {
+                        perdre();
+                        return;
+
+                    }
+
+
             }
 
             Main.monJeu.cleanObstacleList();
@@ -185,6 +200,7 @@ public class JeuView {
         gameLoop.stop();
         Main.monJeu.perdre();
         listObstacleView.clear();
+        listObstacleRondView.clear();
         Alert al=new Alert(Alert.AlertType.WARNING,"T NUL");
         al.show();
 
@@ -231,27 +247,49 @@ public class JeuView {
             public void onChanged(Change<? extends Obstacle> change) {
                 List<ObstacleCarreView> listObstacleViewToDelete = new ArrayList<>();
                 List<ObstacleCarreView> listObstacleCarreViewToAdd= new ArrayList<>();
+                List<ObstacleRondView> listObstacleRondViewToDelete = new ArrayList<>();
+                List<ObstacleRondView> listObstacleRondViewToAdd= new ArrayList<>();
                 while (change.next()) {
                     if (change.wasAdded()) {
                         change.getList().forEach(obstacleTmp -> {
-                            ObstacleCarreView obstacleCarreView = new ObstacleCarreView((ObstacleCarre) obstacleTmp,giftImage );
+                            if (obstacleTmp instanceof ObstacleCarre)
+                            {
+                                ObstacleCarreView obstacleCarreView = new ObstacleCarreView((ObstacleCarre) obstacleTmp, giftImage);
                             listObstacleCarreViewToAdd.add(obstacleCarreView);
+                        }
+                            else
+                            {
+                                ObstacleRondView obstacleRondView = new ObstacleRondView((ObstacleRond) obstacleTmp, greenImage);
+                                listObstacleRondViewToAdd.add(obstacleRondView);
+                            }
                         });
                     }
                     if(change.wasRemoved()){
                         change.getList().forEach(obstacleTmp -> {
-                            ObstacleCarreView obstacleViewToRemove = listObstacleView.stream().filter(obstacleViewTmp -> {
-                               return obstacleViewTmp.getObstacleCarre() == obstacleTmp;
-                            }).findFirst().orElse(null);
-                            listObstacleViewToDelete.add(obstacleViewToRemove);
+                            if (obstacleTmp instanceof ObstacleCarre) {
+                                ObstacleCarreView obstacleViewToRemove = listObstacleView.stream().filter(obstacleViewTmp -> {
+                                    return obstacleViewTmp.getObstacleCarre() == obstacleTmp;
+                                }).findFirst().orElse(null);
+                                listObstacleViewToDelete.add(obstacleViewToRemove);
+                            }
+                            else{
+                                ObstacleRondView obstacleRondViewToRemove = listObstacleRondView.stream().filter(obstacleViewTmp -> {
+                                    return obstacleViewTmp.getObstacleRond() == obstacleTmp;
+                                }).findFirst().orElse(null);
+                                listObstacleRondViewToDelete.add(obstacleRondViewToRemove);
+                            }
+
                         });
                     }
                 }
+                listObstacleRondView.addAll(listObstacleRondViewToAdd);
+                listObstacleRondView.removeAll(listObstacleRondViewToDelete);
                 listObstacleView.addAll(listObstacleCarreViewToAdd);
                 listObstacleView.removeAll(listObstacleViewToDelete);
                 root.getChildren().remove(listObstacleViewToDelete);
                 root.getChildren().addAll(listObstacleCarreViewToAdd);
-
+                root.getChildren().remove(listObstacleRondViewToDelete);
+                root.getChildren().addAll(listObstacleRondViewToAdd);
 
             }
         });
